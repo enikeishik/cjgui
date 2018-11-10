@@ -1,25 +1,26 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: pl
- * Date: 09.11.2018
- * Time: 11:18
+ * Date: 10.11.2018
+ * Time: 13:14
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
-using System.Drawing;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CJGui
 {
 	/// <summary>
-	/// Description of Authors.
+	/// Description of RequiresForm.
 	/// </summary>
-	public partial class AuthorsForm : Form
+	public partial class RequiresForm : Form
 	{
 		protected readonly Data data;
 		
-		protected AuthorsForm()
+		protected RequiresForm()
 		{
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
@@ -31,7 +32,7 @@ namespace CJGui
 			//
 		}
 		
-		public AuthorsForm(Data data)
+		public RequiresForm(Data data)
 		{
 			this.data = data;
 			InitializeComponent();
@@ -44,17 +45,15 @@ namespace CJGui
 		
 		void AddClick(object sender, EventArgs e)
 		{
-			Author newAuthor = new Author();
+			var require = new Dictionary<string, string>(1);
 			
-			var form = new AuthorForm(newAuthor);
+			var form = new RequireForm(require);
 			if (form.ShowDialog(this) == DialogResult.Cancel) {
 				return;
 			}
 			
-			var item = new ListViewItem(newAuthor.name);
-			item.SubItems.Add(newAuthor.email);
-			item.SubItems.Add(newAuthor.homepage);
-			item.SubItems.Add(newAuthor.role);
+			var item = new ListViewItem(require.Keys.ToList().First());
+			item.SubItems.Add(require.Values.ToList().First());
 			listView1.Items.Add(item);
 		}
 		
@@ -65,22 +64,16 @@ namespace CJGui
 			}
 			
 			var item = listView1.SelectedItems[0];
-			Author editAuthor = new Author(
-				item.Text, 
-				item.SubItems[1].Text, 
-				item.SubItems[2].Text, 
-				item.SubItems[3].Text
-			);
+			var require = new Dictionary<string, string>(1);
+			require.Add(item.Text, item.SubItems[1].Text);
 			
-			var form = new AuthorForm(editAuthor);
+			var form = new RequireForm(require);
 			if (form.ShowDialog(this) == DialogResult.Cancel) {
 				return;
 			}
 			
-			item.Text = editAuthor.name;
-			item.SubItems[1].Text = editAuthor.email;
-			item.SubItems[2].Text = editAuthor.homepage;
-			item.SubItems[3].Text = editAuthor.role;
+			item.Text = require.Keys.ToList().First();
+			item.SubItems[1].Text = require.Values.ToList().First();
 		}
 		
 		void RemoveClick(object sender, EventArgs e)
@@ -94,29 +87,22 @@ namespace CJGui
 		
 		void ThisFormClosing(object sender, FormClosingEventArgs e)
 		{
-			data.authors.Clear();
+			data.require.Clear();
 			
 			foreach (ListViewItem item in listView1.Items) {
-				data.authors.Add(new Author(
-					item.SubItems[0].Text, 
-					item.SubItems[1].Text, 
-					item.SubItems[2].Text, 
-					item.SubItems[3].Text
-				));
+				data.require.Add(item.SubItems[0].Text, item.SubItems[1].Text);
 			}
 		}
 		
 		void ThisFormLoad(object sender, EventArgs e)
 		{
-			if (data.authors == null) {
+			if (data.require == null) {
 				return;
 			}
 			
-			foreach (Author author in data.authors) {
-				ListViewItem item = listView1.Items.Add(author.name);
-				item.SubItems.Add(author.email);
-				item.SubItems.Add(author.homepage);
-				item.SubItems.Add(author.role);
+			foreach (var req in data.require) {
+				ListViewItem item = listView1.Items.Add(req.Key);
+				item.SubItems.Add(req.Value);
 			}
 		}
 	}

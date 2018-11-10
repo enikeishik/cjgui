@@ -27,8 +27,8 @@ namespace CJGui
 		public string license; // array<string>
 		public List<Author> authors;
 		public List<Support> support;
-		public object require;
-		public object require_dev;
+		public Dictionary<string, string> require;
+		public Dictionary<string, string> require_dev;
 		public object conflict;
 		public object replace;
 		public object provide;

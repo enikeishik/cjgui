@@ -46,7 +46,7 @@ namespace CJGui
 		{
 			Support newSupport = new Support();
 			
-			SupportForm form = new SupportForm(newSupport);
+			var form = new SupportForm(newSupport);
 			if (form.ShowDialog(this) == DialogResult.Cancel) {
 				return;
 			}
@@ -80,7 +80,7 @@ namespace CJGui
 				item.SubItems[7].Text
 			);
 			
-			SupportForm form = new SupportForm(editSupport);
+			var form = new SupportForm(editSupport);
 			if (form.ShowDialog(this) == DialogResult.Cancel) {
 				return;
 			}

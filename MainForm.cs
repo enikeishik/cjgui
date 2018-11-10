@@ -108,6 +108,20 @@ namespace CJGui
 				return GetListItemsJsonStrings<Support>(name, (List<Support>) val, pad, level);
 			}
 			
+			if (name == "require" && data.require != null && data.require.Count > 0) {
+				var items = new string[data.require.Count + 2];
+				items[0] = pad + "\"" + FixName(name) + "\": {";
+				items[items.Length - 1] = pad + "},";
+				pad = "".PadLeft(++level * PADDING);
+				int i = 0;
+				foreach (var req in data.require) {
+					items[++i] = pad + "\"" + req.Key + "\":\"" + EscapeSpecialChars(req.Value) + "\",";
+				}
+				var lastItem = items[items.Length - 2];
+				items[items.Length - 2] = lastItem.Substring(0, lastItem.Length - 1);
+				return items;
+			}
+			
 			if (val != null) {
 				return new [] {
 					pad + "\"" + FixName(name) + "\": {",
@@ -232,6 +246,30 @@ namespace CJGui
 					supports.Text += support.email + ", ";
 				}
 				supports.Text = supports.Text.Substring(0, supports.Text.Length - 2);
+			}
+			
+			UpdateJson();
+			
+			((Control) sender).Parent.SelectNextControl(ActiveControl, true, true, true, true);
+		}
+		
+		void RequiresEnter(object sender, EventArgs e)
+		{
+			if (data.require == null) {
+				data.require = new Dictionary<string, string>();
+			}
+			
+			var form = new RequiresForm(data);
+			form.ShowDialog();
+			
+			requires.Text = "";
+			if (data.require.Count == 0) {
+				data.require = null;
+			} else {
+				foreach (var req in data.require) {
+					requires.Text += req.Key + ", ";
+				}
+				requires.Text = requires.Text.Substring(0, requires.Text.Length - 2);
 			}
 			
 			UpdateJson();

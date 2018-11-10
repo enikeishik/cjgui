@@ -56,6 +56,7 @@ namespace CJGui
 		private System.Windows.Forms.ComboBox minimum_stability;
 		private System.Windows.Forms.TextBox authors;
 		private System.Windows.Forms.TextBox supports;
+		private System.Windows.Forms.TextBox requires;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -120,6 +121,7 @@ namespace CJGui
 			this.time = new System.Windows.Forms.MaskedTextBox();
 			this.authors = new System.Windows.Forms.TextBox();
 			this.supports = new System.Windows.Forms.TextBox();
+			this.requires = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -506,12 +508,23 @@ namespace CJGui
 			this.supports.TabStop = false;
 			this.supports.Enter += new System.EventHandler(this.SupportsEnter);
 			// 
+			// requires
+			// 
+			this.requires.Location = new System.Drawing.Point(118, 259);
+			this.requires.Name = "requires";
+			this.requires.ReadOnly = true;
+			this.requires.Size = new System.Drawing.Size(269, 20);
+			this.requires.TabIndex = 40;
+			this.requires.TabStop = false;
+			this.requires.Enter += new System.EventHandler(this.RequiresEnter);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
 			this.ClientSize = new System.Drawing.Size(704, 461);
+			this.Controls.Add(this.requires);
 			this.Controls.Add(this.supports);
 			this.Controls.Add(this.authors);
 			this.Controls.Add(this.time);
