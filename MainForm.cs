@@ -72,7 +72,7 @@ namespace CJGui
 			return ret.Substring(0, ret.Length - 1) + "}";
 		}
 		
-		protected string[] GetListItemsJsonStrings<T>(string name, List<T> itemsList, string pad, int level)
+		protected string[] GetItemsJsonStrings<T>(string name, List<T> itemsList, string pad, int level)
 		{
 			var items = new string[itemsList.Count + 2];
 			items[0] = pad + "\"" + FixName(name) + "\": [";
@@ -87,11 +87,11 @@ namespace CJGui
 			return items;
 		}
 		
-		protected string[] GetListItemsJsonStrings<TVal>(string name, Dictionary<string, TVal> itemsDict, string pad, int level)
+		protected string[] GetItemsJsonStrings<TVal>(string name, Dictionary<string, TVal> itemsDict, string pad, int level)
 		{
 			var items = new string[itemsDict.Count + 2];
-			items[0] = pad + "\"" + FixName(name) + "\": [";
-			items[items.Length - 1] = pad + "],";
+			items[0] = pad + "\"" + FixName(name) + "\": {";
+			items[items.Length - 1] = pad + "},";
 			pad = "".PadLeft(++level * PADDING);
 			int i = 0;
 			foreach (var item in itemsDict) {
@@ -118,11 +118,15 @@ namespace CJGui
 			}
 			
 			if (name == "authors") {
-				return GetListItemsJsonStrings<Author>(name, (List<Author>) val, pad, level);
+				return GetItemsJsonStrings<Author>(name, (List<Author>) val, pad, level);
 			}
 			
 			if (name == "require" && data.require != null && data.require.Count > 0) {
-				return GetListItemsJsonStrings<string>(name, data.require, pad, level);
+				return GetItemsJsonStrings<string>(name, data.require, pad, level);
+			}
+			
+			if (name == "require_dev" && data.require_dev != null && data.require_dev.Count > 0) {
+				return GetItemsJsonStrings<string>(name, data.require_dev, pad, level);
 			}
 			
 			if (val != null) {
@@ -259,7 +263,7 @@ namespace CJGui
 				data.require = new Dictionary<string, string>();
 			}
 			
-			var form = new RequiresForm(data);
+			var form = new RequiresForm(data.require);
 			form.ShowDialog();
 			
 			requires.Text = "";
@@ -270,6 +274,30 @@ namespace CJGui
 					requires.Text += req.Key + ", ";
 				}
 				requires.Text = requires.Text.Substring(0, requires.Text.Length - 2);
+			}
+			
+			UpdateJson();
+			
+			((Control) sender).Parent.SelectNextControl(ActiveControl, true, true, true, true);
+		}
+		
+		void RequiresDevEnter(object sender, EventArgs e)
+		{
+			if (data.require_dev == null) {
+				data.require_dev = new Dictionary<string, string>();
+			}
+			
+			var form = new RequiresForm(data.require_dev);
+			form.ShowDialog();
+			
+			requires_dev.Text = "";
+			if (data.require_dev.Count == 0) {
+				data.require_dev = null;
+			} else {
+				foreach (var req in data.require_dev) {
+					requires_dev.Text += req.Key + ", ";
+				}
+				requires_dev.Text = requires_dev.Text.Substring(0, requires_dev.Text.Length - 2);
 			}
 			
 			UpdateJson();

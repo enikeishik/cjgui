@@ -57,6 +57,7 @@ namespace CJGui
 		private System.Windows.Forms.TextBox authors;
 		private System.Windows.Forms.TextBox supports;
 		private System.Windows.Forms.TextBox requires;
+		private System.Windows.Forms.TextBox requires_dev;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -122,6 +123,7 @@ namespace CJGui
 			this.authors = new System.Windows.Forms.TextBox();
 			this.supports = new System.Windows.Forms.TextBox();
 			this.requires = new System.Windows.Forms.TextBox();
+			this.requires_dev = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -514,9 +516,19 @@ namespace CJGui
 			this.requires.Name = "requires";
 			this.requires.ReadOnly = true;
 			this.requires.Size = new System.Drawing.Size(269, 20);
-			this.requires.TabIndex = 40;
+			this.requires.TabIndex = 12;
 			this.requires.TabStop = false;
 			this.requires.Enter += new System.EventHandler(this.RequiresEnter);
+			// 
+			// requires_dev
+			// 
+			this.requires_dev.Location = new System.Drawing.Point(118, 282);
+			this.requires_dev.Name = "requires_dev";
+			this.requires_dev.ReadOnly = true;
+			this.requires_dev.Size = new System.Drawing.Size(269, 20);
+			this.requires_dev.TabIndex = 13;
+			this.requires_dev.TabStop = false;
+			this.requires_dev.Enter += new System.EventHandler(this.RequiresDevEnter);
 			// 
 			// MainForm
 			// 
@@ -524,6 +536,7 @@ namespace CJGui
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
 			this.ClientSize = new System.Drawing.Size(704, 461);
+			this.Controls.Add(this.requires_dev);
 			this.Controls.Add(this.requires);
 			this.Controls.Add(this.supports);
 			this.Controls.Add(this.authors);

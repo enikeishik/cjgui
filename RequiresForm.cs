@@ -18,7 +18,7 @@ namespace CJGui
 	/// </summary>
 	public partial class RequiresForm : Form
 	{
-		protected readonly Data data;
+		protected readonly Dictionary<string, string> require;
 		
 		protected RequiresForm()
 		{
@@ -32,9 +32,9 @@ namespace CJGui
 			//
 		}
 		
-		public RequiresForm(Data data)
+		public RequiresForm(Dictionary<string, string> require)
 		{
-			this.data = data;
+			this.require = require;
 			InitializeComponent();
 		}
 		
@@ -45,15 +45,15 @@ namespace CJGui
 		
 		void AddClick(object sender, EventArgs e)
 		{
-			var require = new Dictionary<string, string>(1);
+			var reqItem = new Dictionary<string, string>(1);
 			
-			var form = new RequireForm(require);
+			var form = new RequireForm(reqItem);
 			if (form.ShowDialog(this) == DialogResult.Cancel) {
 				return;
 			}
 			
-			var item = new ListViewItem(require.Keys.ToList().First());
-			item.SubItems.Add(require.Values.ToList().First());
+			var item = new ListViewItem(reqItem.Keys.ToList().First());
+			item.SubItems.Add(reqItem.Values.ToList().First());
 			listView1.Items.Add(item);
 		}
 		
@@ -64,16 +64,16 @@ namespace CJGui
 			}
 			
 			var item = listView1.SelectedItems[0];
-			var require = new Dictionary<string, string>(1);
-			require.Add(item.Text, item.SubItems[1].Text);
+			var reqItem = new Dictionary<string, string>(1);
+			reqItem.Add(item.Text, item.SubItems[1].Text);
 			
-			var form = new RequireForm(require);
+			var form = new RequireForm(reqItem);
 			if (form.ShowDialog(this) == DialogResult.Cancel) {
 				return;
 			}
 			
-			item.Text = require.Keys.ToList().First();
-			item.SubItems[1].Text = require.Values.ToList().First();
+			item.Text = reqItem.Keys.ToList().First();
+			item.SubItems[1].Text = reqItem.Values.ToList().First();
 		}
 		
 		void RemoveClick(object sender, EventArgs e)
@@ -87,24 +87,24 @@ namespace CJGui
 		
 		void ThisFormClosing(object sender, FormClosingEventArgs e)
 		{
-			data.require.Clear();
+			require.Clear();
 			
 			foreach (ListViewItem item in listView1.Items) {
-				if (!data.require.ContainsKey(item.SubItems[0].Text)) {
-					data.require.Add(item.SubItems[0].Text, item.SubItems[1].Text);
+				if (!require.ContainsKey(item.SubItems[0].Text)) {
+					require.Add(item.SubItems[0].Text, item.SubItems[1].Text);
 				}
 			}
 		}
 		
 		void ThisFormLoad(object sender, EventArgs e)
 		{
-			if (data.require == null) {
+			if (require == null) {
 				return;
 			}
 			
-			foreach (var req in data.require) {
-				ListViewItem item = listView1.Items.Add(req.Key);
-				item.SubItems.Add(req.Value);
+			foreach (var reqItem in require) {
+				ListViewItem item = listView1.Items.Add(reqItem.Key);
+				item.SubItems.Add(reqItem.Value);
 			}
 		}
 	}
