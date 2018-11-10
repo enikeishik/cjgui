@@ -90,7 +90,9 @@ namespace CJGui
 			data.require.Clear();
 			
 			foreach (ListViewItem item in listView1.Items) {
-				data.require.Add(item.SubItems[0].Text, item.SubItems[1].Text);
+				if (!data.require.ContainsKey(item.SubItems[0].Text)) {
+					data.require.Add(item.SubItems[0].Text, item.SubItems[1].Text);
+				}
 			}
 		}
 		
