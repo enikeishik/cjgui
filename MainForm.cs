@@ -117,16 +117,16 @@ namespace CJGui
 				return new [] { pad + "\"" + FixName(name) + "\":\"" + val.ToString().ToLower() + "\"," };
 			}
 			
+			if (val is Dictionary<string, string>) {
+				var dict = ((Dictionary<string, string>) val);
+				if (dict.Count > 0) {
+					return GetItemsJsonStrings<string>(name, dict, pad, level);
+				}
+				return new string[] {};
+			}
+			
 			if (name == "authors") {
 				return GetItemsJsonStrings<Author>(name, (List<Author>) val, pad, level);
-			}
-			
-			if (name == "require" && data.require != null && data.require.Count > 0) {
-				return GetItemsJsonStrings<string>(name, data.require, pad, level);
-			}
-			
-			if (name == "require_dev" && data.require_dev != null && data.require_dev.Count > 0) {
-				return GetItemsJsonStrings<string>(name, data.require_dev, pad, level);
 			}
 			
 			if (val != null) {
@@ -257,52 +257,34 @@ namespace CJGui
 			((Control) sender).Parent.SelectNextControl(ActiveControl, true, true, true, true);
 		}
 		
-		void RequiresEnter(object sender, EventArgs e)
+		void DictFieldEnter(object sender, EventArgs e)
 		{
-			if (data.require == null) {
-				data.require = new Dictionary<string, string>();
+			var formControl = (Control) sender;
+			
+			var dataField = (Dictionary<string, string>) data.GetType().GetField(formControl.Name).GetValue(data);
+			
+			if (dataField == null) {
+				dataField = new Dictionary<string, string>();
 			}
 			
-			var form = new RequiresForm(data.require);
+			//TODO: RequiresForm -> PackagesForm, RequireForm -> PackageForm
+			var form = new RequiresForm(dataField);
 			form.ShowDialog();
 			
-			requires.Text = "";
-			if (data.require.Count == 0) {
-				data.require = null;
+			formControl.Text = "";
+			if (dataField.Count == 0) {
+				dataField = null;
 			} else {
-				foreach (var req in data.require) {
-					requires.Text += req.Key + ", ";
+				foreach (var item in dataField) {
+					formControl.Text += item.Key + ", ";
 				}
-				requires.Text = requires.Text.Substring(0, requires.Text.Length - 2);
+				formControl.Text = formControl.Text.Substring(0, formControl.Text.Length - 2);
 			}
+			data.GetType().GetField(formControl.Name).SetValue(data, dataField);
 			
 			UpdateJson();
 			
-			((Control) sender).Parent.SelectNextControl(ActiveControl, true, true, true, true);
-		}
-		
-		void RequiresDevEnter(object sender, EventArgs e)
-		{
-			if (data.require_dev == null) {
-				data.require_dev = new Dictionary<string, string>();
-			}
-			
-			var form = new RequiresForm(data.require_dev);
-			form.ShowDialog();
-			
-			requires_dev.Text = "";
-			if (data.require_dev.Count == 0) {
-				data.require_dev = null;
-			} else {
-				foreach (var req in data.require_dev) {
-					requires_dev.Text += req.Key + ", ";
-				}
-				requires_dev.Text = requires_dev.Text.Substring(0, requires_dev.Text.Length - 2);
-			}
-			
-			UpdateJson();
-			
-			((Control) sender).Parent.SelectNextControl(ActiveControl, true, true, true, true);
+			formControl.Parent.SelectNextControl(ActiveControl, true, true, true, true);
 		}
 	}
 }

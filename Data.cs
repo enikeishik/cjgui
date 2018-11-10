@@ -29,10 +29,10 @@ namespace CJGui
 		public Support support;
 		public Dictionary<string, string> require;
 		public Dictionary<string, string> require_dev;
-		public object conflict;
-		public object replace;
-		public object provide;
-		public object suggest;
+		public Dictionary<string, string> conflict;
+		public Dictionary<string, string> replace;
+		public Dictionary<string, string> provide;
+		public Dictionary<string, string> suggest;
 		public object autoload;
 		public object autoload_dev;
 		public string minimum_stability; // "^dev|alpha|beta|rc|RC|stable$"

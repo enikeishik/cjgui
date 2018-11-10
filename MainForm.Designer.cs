@@ -56,8 +56,12 @@ namespace CJGui
 		private System.Windows.Forms.ComboBox minimum_stability;
 		private System.Windows.Forms.TextBox authors;
 		private System.Windows.Forms.TextBox supports;
-		private System.Windows.Forms.TextBox requires;
-		private System.Windows.Forms.TextBox requires_dev;
+		private System.Windows.Forms.TextBox require;
+		private System.Windows.Forms.TextBox require_dev;
+		private System.Windows.Forms.TextBox conflict;
+		private System.Windows.Forms.TextBox replace;
+		private System.Windows.Forms.TextBox provide;
+		private System.Windows.Forms.TextBox suggest;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -122,8 +126,12 @@ namespace CJGui
 			this.time = new System.Windows.Forms.MaskedTextBox();
 			this.authors = new System.Windows.Forms.TextBox();
 			this.supports = new System.Windows.Forms.TextBox();
-			this.requires = new System.Windows.Forms.TextBox();
-			this.requires_dev = new System.Windows.Forms.TextBox();
+			this.require = new System.Windows.Forms.TextBox();
+			this.require_dev = new System.Windows.Forms.TextBox();
+			this.conflict = new System.Windows.Forms.TextBox();
+			this.replace = new System.Windows.Forms.TextBox();
+			this.provide = new System.Windows.Forms.TextBox();
+			this.suggest = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -510,25 +518,65 @@ namespace CJGui
 			this.supports.TabStop = false;
 			this.supports.Enter += new System.EventHandler(this.SupportsEnter);
 			// 
-			// requires
+			// require
 			// 
-			this.requires.Location = new System.Drawing.Point(118, 259);
-			this.requires.Name = "requires";
-			this.requires.ReadOnly = true;
-			this.requires.Size = new System.Drawing.Size(269, 20);
-			this.requires.TabIndex = 12;
-			this.requires.TabStop = false;
-			this.requires.Enter += new System.EventHandler(this.RequiresEnter);
+			this.require.Location = new System.Drawing.Point(118, 259);
+			this.require.Name = "require";
+			this.require.ReadOnly = true;
+			this.require.Size = new System.Drawing.Size(269, 20);
+			this.require.TabIndex = 12;
+			this.require.TabStop = false;
+			this.require.Enter += new System.EventHandler(this.DictFieldEnter);
 			// 
-			// requires_dev
+			// require_dev
 			// 
-			this.requires_dev.Location = new System.Drawing.Point(118, 282);
-			this.requires_dev.Name = "requires_dev";
-			this.requires_dev.ReadOnly = true;
-			this.requires_dev.Size = new System.Drawing.Size(269, 20);
-			this.requires_dev.TabIndex = 13;
-			this.requires_dev.TabStop = false;
-			this.requires_dev.Enter += new System.EventHandler(this.RequiresDevEnter);
+			this.require_dev.Location = new System.Drawing.Point(118, 282);
+			this.require_dev.Name = "require_dev";
+			this.require_dev.ReadOnly = true;
+			this.require_dev.Size = new System.Drawing.Size(269, 20);
+			this.require_dev.TabIndex = 13;
+			this.require_dev.TabStop = false;
+			this.require_dev.Enter += new System.EventHandler(this.DictFieldEnter);
+			// 
+			// conflict
+			// 
+			this.conflict.Location = new System.Drawing.Point(118, 305);
+			this.conflict.Name = "conflict";
+			this.conflict.ReadOnly = true;
+			this.conflict.Size = new System.Drawing.Size(269, 20);
+			this.conflict.TabIndex = 14;
+			this.conflict.TabStop = false;
+			this.conflict.Enter += new System.EventHandler(this.DictFieldEnter);
+			// 
+			// replace
+			// 
+			this.replace.Location = new System.Drawing.Point(118, 328);
+			this.replace.Name = "replace";
+			this.replace.ReadOnly = true;
+			this.replace.Size = new System.Drawing.Size(269, 20);
+			this.replace.TabIndex = 15;
+			this.replace.TabStop = false;
+			this.replace.Enter += new System.EventHandler(this.DictFieldEnter);
+			// 
+			// provide
+			// 
+			this.provide.Location = new System.Drawing.Point(118, 351);
+			this.provide.Name = "provide";
+			this.provide.ReadOnly = true;
+			this.provide.Size = new System.Drawing.Size(269, 20);
+			this.provide.TabIndex = 16;
+			this.provide.TabStop = false;
+			this.provide.Enter += new System.EventHandler(this.DictFieldEnter);
+			// 
+			// suggest
+			// 
+			this.suggest.Location = new System.Drawing.Point(118, 374);
+			this.suggest.Name = "suggest";
+			this.suggest.ReadOnly = true;
+			this.suggest.Size = new System.Drawing.Size(269, 20);
+			this.suggest.TabIndex = 17;
+			this.suggest.TabStop = false;
+			this.suggest.Enter += new System.EventHandler(this.DictFieldEnter);
 			// 
 			// MainForm
 			// 
@@ -536,8 +584,12 @@ namespace CJGui
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
 			this.ClientSize = new System.Drawing.Size(704, 461);
-			this.Controls.Add(this.requires_dev);
-			this.Controls.Add(this.requires);
+			this.Controls.Add(this.suggest);
+			this.Controls.Add(this.provide);
+			this.Controls.Add(this.replace);
+			this.Controls.Add(this.conflict);
+			this.Controls.Add(this.require_dev);
+			this.Controls.Add(this.require);
 			this.Controls.Add(this.supports);
 			this.Controls.Add(this.authors);
 			this.Controls.Add(this.time);
