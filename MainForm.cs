@@ -63,7 +63,11 @@ namespace CJGui
 			string ret = "{";
 			var fields = item.GetType().GetFields();
 			foreach (var field in fields) {
-				ret += "\"" + field.Name + "\":\"" + EscapeSpecialChars(field.GetValue(item).ToString()) + "\",";
+				var val = field.GetValue(item).ToString();
+				if (val == "") {
+					continue;
+				}
+				ret += "\"" + field.Name + "\":\"" + EscapeSpecialChars(val) + "\",";
 			}
 			return ret.Substring(0, ret.Length - 1) + "}";
 		}
@@ -86,6 +90,9 @@ namespace CJGui
 		protected string[] GetValFormated(string name, object val, string pad, int level)
 		{
 			if (val is string) {
+				if ((string) val == "") {
+					return new string[0];
+				}
 				return new [] { pad + "\"" + FixName(name) + "\":\"" + EscapeSpecialChars((string) val) + "\"," };
 			}
 			
