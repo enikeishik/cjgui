@@ -87,6 +87,23 @@ namespace CJGui
 			return items;
 		}
 		
+		protected string[] GetListItemsJsonStrings<TVal>(string name, Dictionary<string, TVal> itemsDict, string pad, int level)
+		{
+			var items = new string[itemsDict.Count + 2];
+			items[0] = pad + "\"" + FixName(name) + "\": [";
+			items[items.Length - 1] = pad + "],";
+			pad = "".PadLeft(++level * PADDING);
+			int i = 0;
+			foreach (var item in itemsDict) {
+				//TODO: modify GetItemFieldsJson to walk through string(value)|object(fields)
+				//items[++i] = pad + GetItemFieldsJson(item.Value) + ",";
+				items[++i] = pad + "\"" + item.Key + "\":\"" + EscapeSpecialChars(item.Value.ToString()) + "\",";
+			}
+			var lastItem = items[items.Length - 2];
+			items[items.Length - 2] = lastItem.Substring(0, lastItem.Length - 1);
+			return items;
+		}
+		
 		protected string[] GetValFormated(string name, object val, string pad, int level)
 		{
 			if (val is string) {
@@ -104,22 +121,8 @@ namespace CJGui
 				return GetListItemsJsonStrings<Author>(name, (List<Author>) val, pad, level);
 			}
 			
-			if (name == "support") {
-				return GetListItemsJsonStrings<Support>(name, (List<Support>) val, pad, level);
-			}
-			
 			if (name == "require" && data.require != null && data.require.Count > 0) {
-				var items = new string[data.require.Count + 2];
-				items[0] = pad + "\"" + FixName(name) + "\": {";
-				items[items.Length - 1] = pad + "},";
-				pad = "".PadLeft(++level * PADDING);
-				int i = 0;
-				foreach (var req in data.require) {
-					items[++i] = pad + "\"" + req.Key + "\":\"" + EscapeSpecialChars(req.Value) + "\",";
-				}
-				var lastItem = items[items.Length - 2];
-				items[items.Length - 2] = lastItem.Substring(0, lastItem.Length - 1);
-				return items;
+				return GetListItemsJsonStrings<string>(name, data.require, pad, level);
 			}
 			
 			if (val != null) {
@@ -232,20 +235,17 @@ namespace CJGui
 		void SupportsEnter(object sender, EventArgs e)
 		{
 			if (data.support == null) {
-				data.support = new List<Support>();
+				data.support = new Support();
 			}
 			
-			var form = new SupportsForm(data);
+			var form = new SupportForm(data.support);
 			form.ShowDialog();
 			
 			supports.Text = "";
-			if (data.support.Count == 0) {
+			if (data.support.email == "") {
 				data.support = null;
 			} else {
-				foreach (Support support in data.support) {
-					supports.Text += support.email + ", ";
-				}
-				supports.Text = supports.Text.Substring(0, supports.Text.Length - 2);
+				supports.Text += data.support.email;
 			}
 			
 			UpdateJson();

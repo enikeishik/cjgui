@@ -80,7 +80,7 @@ namespace CJGui
 			this.cancel.Location = new System.Drawing.Point(197, 226);
 			this.cancel.Name = "cancel";
 			this.cancel.Size = new System.Drawing.Size(75, 23);
-			this.cancel.TabIndex = 16;
+			this.cancel.TabIndex = 10;
 			this.cancel.Text = "cancel";
 			this.cancel.UseVisualStyleBackColor = true;
 			this.cancel.Click += new System.EventHandler(this.CancelClick);
@@ -90,7 +90,7 @@ namespace CJGui
 			this.save.Location = new System.Drawing.Point(12, 226);
 			this.save.Name = "save";
 			this.save.Size = new System.Drawing.Size(75, 23);
-			this.save.TabIndex = 15;
+			this.save.TabIndex = 9;
 			this.save.Text = "save";
 			this.save.UseVisualStyleBackColor = true;
 			this.save.Click += new System.EventHandler(this.SaveClick);
@@ -100,28 +100,28 @@ namespace CJGui
 			this.wiki.Location = new System.Drawing.Point(118, 75);
 			this.wiki.Name = "wiki";
 			this.wiki.Size = new System.Drawing.Size(154, 20);
-			this.wiki.TabIndex = 14;
+			this.wiki.TabIndex = 4;
 			// 
 			// forum
 			// 
 			this.forum.Location = new System.Drawing.Point(118, 52);
 			this.forum.Name = "forum";
 			this.forum.Size = new System.Drawing.Size(154, 20);
-			this.forum.TabIndex = 12;
+			this.forum.TabIndex = 3;
 			// 
 			// issues
 			// 
 			this.issues.Location = new System.Drawing.Point(118, 29);
 			this.issues.Name = "issues";
 			this.issues.Size = new System.Drawing.Size(154, 20);
-			this.issues.TabIndex = 10;
+			this.issues.TabIndex = 2;
 			// 
 			// email
 			// 
 			this.email.Location = new System.Drawing.Point(118, 6);
 			this.email.Name = "email";
 			this.email.Size = new System.Drawing.Size(154, 20);
-			this.email.TabIndex = 8;
+			this.email.TabIndex = 1;
 			// 
 			// label4
 			// 
@@ -192,28 +192,28 @@ namespace CJGui
 			this.irc.Location = new System.Drawing.Point(118, 98);
 			this.irc.Name = "irc";
 			this.irc.Size = new System.Drawing.Size(154, 20);
-			this.irc.TabIndex = 21;
+			this.irc.TabIndex = 5;
 			// 
 			// source
 			// 
 			this.source.Location = new System.Drawing.Point(118, 121);
 			this.source.Name = "source";
 			this.source.Size = new System.Drawing.Size(154, 20);
-			this.source.TabIndex = 22;
+			this.source.TabIndex = 6;
 			// 
 			// docs
 			// 
 			this.docs.Location = new System.Drawing.Point(118, 144);
 			this.docs.Name = "docs";
 			this.docs.Size = new System.Drawing.Size(154, 20);
-			this.docs.TabIndex = 23;
+			this.docs.TabIndex = 7;
 			// 
 			// rss
 			// 
 			this.rss.Location = new System.Drawing.Point(118, 167);
 			this.rss.Name = "rss";
 			this.rss.Size = new System.Drawing.Size(154, 20);
-			this.rss.TabIndex = 24;
+			this.rss.TabIndex = 8;
 			// 
 			// SupportForm
 			// 

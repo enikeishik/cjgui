@@ -82,10 +82,6 @@
     <Compile Include="SupportForm.Designer.cs">
       <DependentUpon>SupportForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SupportsForm.cs" />
-    <Compile Include="SupportsForm.Designer.cs">
-      <DependentUpon>SupportsForm.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -108,9 +104,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SupportForm.resx">
       <DependentUpon>SupportForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SupportsForm.resx">
-      <DependentUpon>SupportsForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

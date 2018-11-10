@@ -26,7 +26,7 @@ namespace CJGui
 		public string time; // 'YYYY-MM-DD'|'YYYY-MM-DD HH:MM:SS'|'YYYY-MM-DDTHH:MM:SSZ'
 		public string license; // array<string>
 		public List<Author> authors;
-		public List<Support> support;
+		public Support support;
 		public Dictionary<string, string> require;
 		public Dictionary<string, string> require_dev;
 		public object conflict;
