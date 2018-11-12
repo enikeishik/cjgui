@@ -33,8 +33,8 @@ namespace CJGui
 		public Dictionary<string, string> replace;
 		public Dictionary<string, string> provide;
 		public Dictionary<string, string> suggest;
-		public object autoload;
-		public object autoload_dev;
+		public Autoload autoload;
+		public Autoload autoload_dev;
 		public string minimum_stability; // "^dev|alpha|beta|rc|RC|stable$"
 		public bool prefer_stable = true;
 		public object repositories;

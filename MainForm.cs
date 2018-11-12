@@ -81,7 +81,7 @@ namespace CJGui
 			return items;
 		}
 		
-		protected string[] GetItemsJsonStrings<TVal>(string name, Dictionary<string, TVal> itemsDict, string pad, int level)
+		protected string[] GetItemsJsonStrings<TVal>(string name, Dictionary<string, TVal> itemsDict, string pad, int level, bool raw = false)
 		{
 			var items = new string[itemsDict.Count + 2];
 			items[0] = pad + "\"" + FixName(name) + "\": {";
@@ -91,7 +91,11 @@ namespace CJGui
 			foreach (var item in itemsDict) {
 				//TODO: modify GetItemFieldsJson to walk through string(value)|object(fields)
 				//items[++i] = pad + GetItemFieldsJson(item.Value) + ",";
-				items[++i] = pad + "\"" + item.Key + "\":\"" + EscapeSpecialChars(item.Value.ToString()) + "\",";
+				if (raw) {
+					items[++i] = pad + "\"" + item.Key + "\":" + item.Value.ToString() + ",";
+				} else {
+					items[++i] = pad + "\"" + item.Key + "\":\"" + EscapeSpecialChars(item.Value.ToString()) + "\",";
+				}
 			}
 			var lastItem = items[items.Length - 2];
 			items[items.Length - 2] = lastItem.Substring(0, lastItem.Length - 1);
@@ -115,6 +119,14 @@ namespace CJGui
 				var dict = ((Dictionary<string, string>) val);
 				if (dict.Count > 0) {
 					return GetItemsJsonStrings<string>(name, dict, pad, level);
+				}
+				return new string[] {};
+			}
+			
+			if (val is Dictionary<string, StrArr>) {
+				var dict = ((Dictionary<string, StrArr>) val);
+				if (dict.Count > 0) {
+					return GetItemsJsonStrings<StrArr>(name, dict, pad, level, true);
 				}
 				return new string[] {};
 			}
@@ -270,6 +282,33 @@ namespace CJGui
 			} else {
 				foreach (var item in dataField) {
 					formControl.Text += item.Key + ", ";
+				}
+				formControl.Text = formControl.Text.Substring(0, formControl.Text.Length - 2);
+			}
+			data.GetType().GetField(formControl.Name).SetValue(data, dataField);
+			
+			UpdateJson();
+			
+			formControl.Parent.SelectNextControl(ActiveControl, true, true, true, true);
+		}
+		
+		void AutoloadEnter(object sender, EventArgs e)
+		{
+			var formControl = (Control) sender;
+			
+			var dataField = (Autoload) data.GetType().GetField(formControl.Name).GetValue(data);
+	
+			if (dataField == null) {
+				dataField = new Autoload();
+			}
+			
+			var form = new AutoloadForm(dataField);
+			form.ShowDialog();
+			
+			formControl.Text = "";
+			if (dataField.psr_4.Keys.Count > 0) {
+				foreach (var key in dataField.psr_4.Keys) {
+					formControl.Text += key + ", ";
 				}
 				formControl.Text = formControl.Text.Substring(0, formControl.Text.Length - 2);
 			}

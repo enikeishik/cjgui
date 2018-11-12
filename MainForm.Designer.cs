@@ -62,6 +62,7 @@ namespace CJGui
 		private System.Windows.Forms.TextBox replace;
 		private System.Windows.Forms.TextBox provide;
 		private System.Windows.Forms.TextBox suggest;
+		private System.Windows.Forms.TextBox autoload;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -132,6 +133,7 @@ namespace CJGui
 			this.replace = new System.Windows.Forms.TextBox();
 			this.provide = new System.Windows.Forms.TextBox();
 			this.suggest = new System.Windows.Forms.TextBox();
+			this.autoload = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -245,12 +247,12 @@ namespace CJGui
 			// json
 			// 
 			this.json.Dock = System.Windows.Forms.DockStyle.Right;
-			this.json.Location = new System.Drawing.Point(408, 0);
+			this.json.Location = new System.Drawing.Point(393, 0);
 			this.json.Multiline = true;
 			this.json.Name = "json";
 			this.json.ReadOnly = true;
 			this.json.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.json.Size = new System.Drawing.Size(279, 676);
+			this.json.Size = new System.Drawing.Size(314, 676);
 			this.json.TabIndex = 0;
 			this.json.WordWrap = false;
 			this.json.Click += new System.EventHandler(this.SelectJson);
@@ -578,12 +580,23 @@ namespace CJGui
 			this.suggest.TabStop = false;
 			this.suggest.Enter += new System.EventHandler(this.DictFieldEnter);
 			// 
+			// autoload
+			// 
+			this.autoload.Location = new System.Drawing.Point(118, 397);
+			this.autoload.Name = "autoload";
+			this.autoload.ReadOnly = true;
+			this.autoload.Size = new System.Drawing.Size(269, 20);
+			this.autoload.TabIndex = 18;
+			this.autoload.TabStop = false;
+			this.autoload.Enter += new System.EventHandler(this.AutoloadEnter);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
-			this.ClientSize = new System.Drawing.Size(704, 461);
+			this.ClientSize = new System.Drawing.Size(724, 461);
+			this.Controls.Add(this.autoload);
 			this.Controls.Add(this.suggest);
 			this.Controls.Add(this.provide);
 			this.Controls.Add(this.replace);

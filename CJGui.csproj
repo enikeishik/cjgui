@@ -34,6 +34,9 @@
     <Reference Include="Microsoft.CSharp">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -62,6 +65,15 @@
     <Compile Include="AuthorsForm.Designer.cs">
       <DependentUpon>AuthorsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Autoload.cs" />
+    <Compile Include="AutoloadForm.cs" />
+    <Compile Include="AutoloadForm.Designer.cs">
+      <DependentUpon>AutoloadForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AutoloadPsrForm.cs" />
+    <Compile Include="AutoloadPsrForm.Designer.cs">
+      <DependentUpon>AutoloadPsrForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data.cs" />
     <Compile Include="MainForm.cs" />
     <Compile Include="MainForm.Designer.cs">
@@ -77,6 +89,7 @@
     <Compile Include="PackagesForm.Designer.cs">
       <DependentUpon>PackagesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="StrArr.cs" />
     <Compile Include="Support.cs" />
     <Compile Include="SupportForm.cs" />
     <Compile Include="SupportForm.Designer.cs">
@@ -92,6 +105,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AuthorsForm.resx">
       <DependentUpon>AuthorsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AutoloadForm.resx">
+      <DependentUpon>AutoloadForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AutoloadPsrForm.resx">
+      <DependentUpon>AutoloadPsrForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
