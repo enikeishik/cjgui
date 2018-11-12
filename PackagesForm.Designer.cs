@@ -8,7 +8,7 @@
  */
 namespace CJGui
 {
-	partial class RequiresForm
+	partial class PackagesForm
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
@@ -120,7 +120,7 @@ namespace CJGui
 			this.add.UseVisualStyleBackColor = true;
 			this.add.Click += new System.EventHandler(this.AddClick);
 			// 
-			// RequiresForm
+			// PackagesForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -133,9 +133,9 @@ namespace CJGui
 			this.Controls.Add(this.add);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
-			this.Name = "RequiresForm";
+			this.Name = "PackageForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Requires";
+			this.Text = "Packages";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ThisFormClosing);
 			this.Load += new System.EventHandler(this.ThisFormLoad);
 			this.ResumeLayout(false);

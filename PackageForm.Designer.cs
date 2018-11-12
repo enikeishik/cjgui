@@ -8,7 +8,7 @@
  */
 namespace CJGui
 {
-	partial class RequireForm
+	partial class PackageForm
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
@@ -101,7 +101,7 @@ namespace CJGui
 			this.label1.TabIndex = 7;
 			this.label1.Text = "package";
 			// 
-			// RequireForm
+			// PackageForm
 			// 
 			this.AcceptButton = this.save;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -118,9 +118,9 @@ namespace CJGui
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "RequireForm";
+			this.Name = "PackageForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Require";
+			this.Text = "Package";
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

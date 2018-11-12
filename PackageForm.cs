@@ -14,25 +14,18 @@ using System.Linq;
 namespace CJGui
 {
 	/// <summary>
-	/// Description of RequireForm.
+	/// Description of PackageForm.
 	/// </summary>
-	public partial class RequireForm : Form
+	public partial class PackageForm : Form
 	{
 		protected Dictionary<string, string> require;
 		
-		protected RequireForm()
+		protected PackageForm()
 		{
-			//
-			// The InitializeComponent() call is required for Windows Forms designer support.
-			//
 			InitializeComponent();
-			
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			//
 		}
 		
-		public RequireForm(Dictionary<string, string> require)
+		public PackageForm(Dictionary<string, string> require)
 		{
 			this.require = require;
 			InitializeComponent();

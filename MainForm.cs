@@ -28,14 +28,8 @@ namespace CJGui
 		
 		public MainForm()
 		{
-			//
-			// The InitializeComponent() call is required for Windows Forms designer support.
-			//
 			InitializeComponent();
 			
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			//
 			data = new Data();
 		}
 		
@@ -267,8 +261,7 @@ namespace CJGui
 				dataField = new Dictionary<string, string>();
 			}
 			
-			//TODO: RequiresForm -> PackagesForm, RequireForm -> PackageForm
-			var form = new RequiresForm(dataField);
+			var form = new PackagesForm(dataField);
 			form.ShowDialog();
 			
 			formControl.Text = "";

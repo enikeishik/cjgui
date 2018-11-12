@@ -14,25 +14,18 @@ using System.Linq;
 namespace CJGui
 {
 	/// <summary>
-	/// Description of RequiresForm.
+	/// Description of PackagesForm.
 	/// </summary>
-	public partial class RequiresForm : Form
+	public partial class PackagesForm : Form
 	{
 		protected readonly Dictionary<string, string> require;
 		
-		protected RequiresForm()
+		protected PackagesForm()
 		{
-			//
-			// The InitializeComponent() call is required for Windows Forms designer support.
-			//
 			InitializeComponent();
-			
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			//
 		}
 		
-		public RequiresForm(Dictionary<string, string> require)
+		public PackagesForm(Dictionary<string, string> require)
 		{
 			this.require = require;
 			InitializeComponent();
@@ -47,7 +40,7 @@ namespace CJGui
 		{
 			var reqItem = new Dictionary<string, string>(1);
 			
-			var form = new RequireForm(reqItem);
+			var form = new PackageForm(reqItem);
 			if (form.ShowDialog(this) == DialogResult.Cancel) {
 				return;
 			}
@@ -67,7 +60,7 @@ namespace CJGui
 			var reqItem = new Dictionary<string, string>(1);
 			reqItem.Add(item.Text, item.SubItems[1].Text);
 			
-			var form = new RequireForm(reqItem);
+			var form = new PackageForm(reqItem);
 			if (form.ShowDialog(this) == DialogResult.Cancel) {
 				return;
 			}
