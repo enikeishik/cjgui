@@ -307,11 +307,12 @@ namespace CJGui
 			
 			formControl.Text = "";
 			if (dataField.psr_4.Keys.Count > 0) {
-				foreach (var key in dataField.psr_4.Keys) {
-					formControl.Text += key + ", ";
-				}
-				formControl.Text = formControl.Text.Substring(0, formControl.Text.Length - 2);
+				formControl.Text += ", PSR-4";
 			}
+			if (dataField.psr_0.Keys.Count > 0) {
+				formControl.Text += ", PSR-0";
+			}
+			formControl.Text = formControl.Text.Substring(2);
 			data.GetType().GetField(formControl.Name).SetValue(data, dataField);
 			
 			UpdateJson();

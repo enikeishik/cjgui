@@ -58,7 +58,7 @@ namespace CJGui
 			this.close.Location = new System.Drawing.Point(12, 146);
 			this.close.Name = "close";
 			this.close.Size = new System.Drawing.Size(260, 23);
-			this.close.TabIndex = 18;
+			this.close.TabIndex = 5;
 			this.close.Text = "close";
 			this.close.UseVisualStyleBackColor = true;
 			this.close.Click += new System.EventHandler(this.CloseClick);
@@ -68,7 +68,7 @@ namespace CJGui
 			this.key.Location = new System.Drawing.Point(93, 6);
 			this.key.Name = "key";
 			this.key.Size = new System.Drawing.Size(179, 20);
-			this.key.TabIndex = 20;
+			this.key.TabIndex = 1;
 			// 
 			// label2
 			// 
@@ -92,14 +92,14 @@ namespace CJGui
 			this.values.Location = new System.Drawing.Point(93, 32);
 			this.values.Name = "values";
 			this.values.Size = new System.Drawing.Size(179, 69);
-			this.values.TabIndex = 22;
+			this.values.TabIndex = 2;
 			// 
 			// add
 			// 
 			this.add.Location = new System.Drawing.Point(93, 107);
 			this.add.Name = "add";
 			this.add.Size = new System.Drawing.Size(75, 23);
-			this.add.TabIndex = 23;
+			this.add.TabIndex = 3;
 			this.add.Text = "add";
 			this.add.UseVisualStyleBackColor = true;
 			this.add.Click += new System.EventHandler(this.AddClick);
@@ -109,7 +109,7 @@ namespace CJGui
 			this.remove.Location = new System.Drawing.Point(197, 107);
 			this.remove.Name = "remove";
 			this.remove.Size = new System.Drawing.Size(75, 23);
-			this.remove.TabIndex = 24;
+			this.remove.TabIndex = 4;
 			this.remove.Text = "remove";
 			this.remove.UseVisualStyleBackColor = true;
 			this.remove.Click += new System.EventHandler(this.RemoveClick);

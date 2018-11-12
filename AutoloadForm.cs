@@ -94,6 +94,15 @@ namespace CJGui
 				}
 				autoload.psr_4.Add(item.Text, new StrArr(list));
 			}
+			
+			autoload.psr_0 = new Dictionary<string, StrArr>(lvwPsr_0.Items.Count);
+			foreach (ListViewItem item in lvwPsr_0.Items) {
+				List<string> list = new List<string>(item.SubItems.Count);
+				for (var i = 1; i < item.SubItems.Count; i++) {
+					list.Add(item.SubItems[i].Text);
+				}
+				autoload.psr_0.Add(item.Text, new StrArr(list));
+			}
 		}
 		
 		void ThisFormLoad(object sender, EventArgs e)
