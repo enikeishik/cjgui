@@ -67,6 +67,12 @@ namespace CJGui
 		private System.Windows.Forms.CheckBox prefer_stable;
 		private System.Windows.Forms.CheckBox abandoned;
 		private System.Windows.Forms.TextBox bin;
+		private System.Windows.Forms.TextBox repositories;
+		private System.Windows.Forms.TextBox config;
+		private System.Windows.Forms.TextBox scripts;
+		private System.Windows.Forms.TextBox extra;
+		private System.Windows.Forms.TextBox archive;
+		private System.Windows.Forms.TextBox non_feature_branches;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -142,6 +148,12 @@ namespace CJGui
 			this.prefer_stable = new System.Windows.Forms.CheckBox();
 			this.abandoned = new System.Windows.Forms.CheckBox();
 			this.bin = new System.Windows.Forms.TextBox();
+			this.repositories = new System.Windows.Forms.TextBox();
+			this.config = new System.Windows.Forms.TextBox();
+			this.scripts = new System.Windows.Forms.TextBox();
+			this.extra = new System.Windows.Forms.TextBox();
+			this.archive = new System.Windows.Forms.TextBox();
+			this.non_feature_branches = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -255,7 +267,7 @@ namespace CJGui
 			// json
 			// 
 			this.json.Dock = System.Windows.Forms.DockStyle.Right;
-			this.json.Location = new System.Drawing.Point(393, 0);
+			this.json.Location = new System.Drawing.Point(410, 0);
 			this.json.Multiline = true;
 			this.json.Name = "json";
 			this.json.ReadOnly = true;
@@ -624,7 +636,7 @@ namespace CJGui
 			this.abandoned.Location = new System.Drawing.Point(118, 625);
 			this.abandoned.Name = "abandoned";
 			this.abandoned.Size = new System.Drawing.Size(269, 24);
-			this.abandoned.TabIndex = 39;
+			this.abandoned.TabIndex = 28;
 			this.abandoned.UseVisualStyleBackColor = true;
 			this.abandoned.Click += new System.EventHandler(this.AbandonedClick);
 			// 
@@ -634,16 +646,70 @@ namespace CJGui
 			this.bin.Name = "bin";
 			this.bin.ReadOnly = true;
 			this.bin.Size = new System.Drawing.Size(269, 20);
-			this.bin.TabIndex = 40;
+			this.bin.TabIndex = 26;
 			this.bin.TabStop = false;
 			this.bin.Enter += new System.EventHandler(this.BinEnter);
+			// 
+			// repositories
+			// 
+			this.repositories.Location = new System.Drawing.Point(118, 489);
+			this.repositories.Name = "repositories";
+			this.repositories.Size = new System.Drawing.Size(269, 20);
+			this.repositories.TabIndex = 22;
+			this.repositories.TextChanged += new System.EventHandler(this.FieldChanged);
+			// 
+			// config
+			// 
+			this.config.Location = new System.Drawing.Point(118, 512);
+			this.config.Name = "config";
+			this.config.Size = new System.Drawing.Size(269, 20);
+			this.config.TabIndex = 23;
+			this.config.TextChanged += new System.EventHandler(this.FieldChanged);
+			// 
+			// scripts
+			// 
+			this.scripts.Location = new System.Drawing.Point(118, 535);
+			this.scripts.Name = "scripts";
+			this.scripts.Size = new System.Drawing.Size(269, 20);
+			this.scripts.TabIndex = 24;
+			this.scripts.TextChanged += new System.EventHandler(this.FieldChanged);
+			// 
+			// extra
+			// 
+			this.extra.Location = new System.Drawing.Point(118, 558);
+			this.extra.Name = "extra";
+			this.extra.Size = new System.Drawing.Size(269, 20);
+			this.extra.TabIndex = 25;
+			this.extra.TextChanged += new System.EventHandler(this.FieldChanged);
+			// 
+			// archive
+			// 
+			this.archive.Location = new System.Drawing.Point(118, 604);
+			this.archive.Name = "archive";
+			this.archive.Size = new System.Drawing.Size(269, 20);
+			this.archive.TabIndex = 27;
+			this.archive.TextChanged += new System.EventHandler(this.FieldChanged);
+			// 
+			// non_feature_branches
+			// 
+			this.non_feature_branches.Location = new System.Drawing.Point(118, 650);
+			this.non_feature_branches.Name = "non_feature_branches";
+			this.non_feature_branches.Size = new System.Drawing.Size(269, 20);
+			this.non_feature_branches.TabIndex = 29;
+			this.non_feature_branches.TextChanged += new System.EventHandler(this.FieldChanged);
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
-			this.ClientSize = new System.Drawing.Size(724, 461);
+			this.ClientSize = new System.Drawing.Size(741, 461);
+			this.Controls.Add(this.non_feature_branches);
+			this.Controls.Add(this.archive);
+			this.Controls.Add(this.extra);
+			this.Controls.Add(this.scripts);
+			this.Controls.Add(this.config);
+			this.Controls.Add(this.repositories);
 			this.Controls.Add(this.bin);
 			this.Controls.Add(this.abandoned);
 			this.Controls.Add(this.prefer_stable);

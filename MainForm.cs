@@ -128,6 +128,14 @@ namespace CJGui
 		
 		protected string[] GetValFormated(string name, object val, string pad, int level)
 		{
+			//TODO: temporary stub
+			if (name == "repositories" || name == "config" || name == "scripts" || name == "extra" || name == "archive" || name == "non_feature_branches") {
+				if ((string) val == "") {
+					return new string[0];
+				}
+				return new [] { pad + "\"" + FixName(name) + "\":" + (string) val + "," };
+			}
+			
 			if (val is string) {
 				if ((string) val == "") {
 					return new string[0];
@@ -389,6 +397,8 @@ namespace CJGui
 			form.ShowDialog();
 			
 			UpdateJson();
+			
+			((Control) sender).Parent.SelectNextControl(ActiveControl, true, true, true, true);
 		}
 	}
 }
