@@ -1,10 +1,15 @@
 ﻿/*
+ * CJGui
+ * Composer JSON file GUI
+ *
  * Created by SharpDevelop.
- * User: pl
+ * User: Enikeishik
  * Date: 09.11.2018
  * Time: 15:25
  * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
+ * @copyright   Copyright (C) 2018 Enikeishik <enikeishik@gmail.com>. All rights reserved.
+ * @author      Enikeishik <enikeishik@gmail.com>
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 using System;
 using System.Drawing;
@@ -21,20 +26,13 @@ namespace CJGui
 		
 		protected AuthorForm()
 		{
-			//
-			// The InitializeComponent() call is required for Windows Forms designer support.
-			//
 			InitializeComponent();
-			
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			//
 		}
 		
 		public AuthorForm(Author author)
+			: this()
 		{
 			this.author = author;
-			InitializeComponent();
 			if (author.name != null) {
 				name.Text = author.name;
 				email.Text = author.email;

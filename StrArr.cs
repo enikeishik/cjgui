@@ -1,10 +1,15 @@
 ﻿/*
+ * CJGui
+ * Composer JSON file GUI
+ *
  * Created by SharpDevelop.
- * User: pl
+ * User: Enikeishik
  * Date: 12.11.2018
  * Time: 9:41
  * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
+ * @copyright   Copyright (C) 2018 Enikeishik <enikeishik@gmail.com>. All rights reserved.
+ * @author      Enikeishik <enikeishik@gmail.com>
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 using System;
 using System.Collections.Generic;
