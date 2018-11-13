@@ -52,18 +52,31 @@ namespace CJGui
 			return name.Replace('_', '-');
 		}
 		
-		protected string GetItemFieldsJson(object item)
+		protected string GetObjectJson(object obj)
 		{
 			string ret = "{";
-			var fields = item.GetType().GetFields();
+			var fields = obj.GetType().GetFields();
 			foreach (var field in fields) {
-				var val = field.GetValue(item).ToString();
+				var val = field.GetValue(obj).ToString();
 				if (val == "") {
 					continue;
 				}
 				ret += "\"" + field.Name + "\":\"" + EscapeSpecialChars(val) + "\",";
 			}
 			return ret.Substring(0, ret.Length - 1) + "}";
+		}
+		
+		protected string GetStringJson(string str)
+		{
+			return "\"" + EscapeSpecialChars(str) + "\"";
+		}
+		
+		protected string GetItemFieldsJson(object item)
+		{
+			if (item is string) {
+				return GetStringJson((string) item);
+			}
+			return GetObjectJson(item);
 		}
 		
 		protected string[] GetItemsJsonStrings<T>(string name, List<T> itemsList, string pad, int level)
@@ -116,7 +129,7 @@ namespace CJGui
 			}
 			
 			if (val is Dictionary<string, string>) {
-				var dict = ((Dictionary<string, string>) val);
+				var dict = (Dictionary<string, string>) val;
 				if (dict.Count > 0) {
 					return GetItemsJsonStrings<string>(name, dict, pad, level);
 				}
@@ -124,9 +137,17 @@ namespace CJGui
 			}
 			
 			if (val is Dictionary<string, StrArr>) {
-				var dict = ((Dictionary<string, StrArr>) val);
+				var dict = (Dictionary<string, StrArr>) val;
 				if (dict.Count > 0) {
 					return GetItemsJsonStrings<StrArr>(name, dict, pad, level, true);
+				}
+				return new string[] {};
+			}
+			
+			if (val is List<string>) {
+				var list = (List<string>) val;
+				if (list.Count > 0) {
+					return GetItemsJsonStrings<string>(name, list, pad, level);
 				}
 				return new string[] {};
 			}
@@ -312,7 +333,18 @@ namespace CJGui
 			if (dataField.psr_0.Keys.Count > 0) {
 				formControl.Text += ", PSR-0";
 			}
-			formControl.Text = formControl.Text.Substring(2);
+			if (dataField.classmap.Count > 0) {
+				formControl.Text += ", Classmap";
+			}
+			if (dataField.files.Count > 0) {
+				formControl.Text += ", Files";
+			}
+			if (dataField.exclude_from_classmap.Count > 0) {
+				formControl.Text += ", Excluded from classmap";
+			}
+			if (formControl.Text.Length > 0) {
+				formControl.Text = formControl.Text.Substring(2);
+			}
 			data.GetType().GetField(formControl.Name).SetValue(data, dataField);
 			
 			UpdateJson();

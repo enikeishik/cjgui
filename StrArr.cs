@@ -41,8 +41,14 @@ namespace CJGui
 			{
 				strarr.Clear();
 				
-				if (value.IndexOf('[') == 0 && value.LastIndexOf(']') == (value.Length - 1)) {
-					var arr = value.Trim(new [] {'[', ']'}).Replace("\", \"", "\",\"").Split(new string [] {"\",\""}, StringSplitOptions.RemoveEmptyEntries);
+				if (value.IndexOf("[\"") == 0 && value.LastIndexOf("\"]") == (value.Length - 1)) {
+					var arr = value
+						.Trim(new [] {'[', ']'})
+						.Replace("\", \"", "\",\"")
+						.Split(
+							new [] {"\",\""}, 
+							StringSplitOptions.RemoveEmptyEntries
+						);
 					foreach (var s in arr) {
 						strarr.Add(s);
 					}

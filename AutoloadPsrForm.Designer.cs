@@ -93,6 +93,7 @@ namespace CJGui
 			this.values.Name = "values";
 			this.values.Size = new System.Drawing.Size(179, 69);
 			this.values.TabIndex = 2;
+			this.values.DoubleClick += new System.EventHandler(this.EditClick);
 			// 
 			// add
 			// 

@@ -18,9 +18,9 @@ namespace CJGui
 	{
 		public Dictionary<string, StrArr> psr_0;
 		public Dictionary<string, StrArr> psr_4;
-		public Dictionary<string, List<string>> classmap;
-		public Dictionary<string, List<string>> files;
-		public Dictionary<string, List<string>> exclude_from_classmap;
+		public List<string> classmap;
+		public List<string> files;
+		public List<string> exclude_from_classmap;
 		
 		public Autoload()
 		{

@@ -7,9 +7,11 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Collections;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.VisualBasic;
 
 namespace CJGui
 {
@@ -36,52 +38,99 @@ namespace CJGui
 			Close();
 		}
 		
-		protected ListView GetList(string group)
+		protected ListView GetListView(string group)
 		{
 			return (ListView) Controls.Find("lvw" + group, true)[0];
 		}
 		
-		void AddClick(object sender, EventArgs e)
+		void AddPsrClick(object sender, EventArgs e)
 		{
 			var aItem = new Dictionary<string, StrArr>(1);
 			
 			var form = new AutoloadPsrForm(aItem);
 			form.ShowDialog(this);
 			
-			var item = new ListViewItem(aItem.Keys.ToList().First());
-			item.SubItems.Add(aItem.Values.ToList().First().Value);
-			var listView = GetList(((Control) sender).Name.Substring("add".Length));
+			var item = new ListViewItem(aItem.Keys.First());
+			item.SubItems.Add(aItem.Values.First().Value);
+			var listView = GetListView(((Control) sender).Name.Substring("add".Length));
 			listView.Items.Add(item);
 		}
 		
-		void EditClick(object sender, EventArgs e)
+		void EditPsrClick(object sender, EventArgs e)
 		{
-			var listView = GetList(((Control) sender).Name.Substring("edit".Length));
+			ListView listView;
+			if (sender is Button) {
+				listView = GetListView(((Control) sender).Name.Substring("edit".Length));
+			} else {
+				listView = (ListView) sender;
+			}
 			
 			if (listView.SelectedItems.Count == 0) {
 				return;
 			}
 			
 			var item = listView.SelectedItems[0];
-			var aItem = new Dictionary<string, string>(1);
-			aItem.Add(item.Text, item.SubItems[1].Text);
+			var aItem = new Dictionary<string, StrArr>(1);
+			aItem.Add(item.Text, new StrArr(item.SubItems[1].Text));
 			
-			var form = new PackageForm(aItem);
+			var form = new AutoloadPsrForm(aItem);
 			form.ShowDialog(this);
 			
-			item.Text = aItem.Keys.ToList().First();
-			item.SubItems[1].Text = aItem.Values.ToList().First();
+			item.Text = aItem.Keys.First();
+			item.SubItems[1].Text = aItem.Values.First().ToString();
 		}
 		
-		void RemoveClick(object sender, EventArgs e)
+		void RemovePsrClick(object sender, EventArgs e)
 		{
-			var listView = GetList(((Control) sender).Name.Substring("remove".Length));
+			var listView = GetListView(((Control) sender).Name.Substring("remove".Length));
 			
 			if (listView.SelectedItems.Count == 0) {
 				return;
 			}
 			var item = listView.SelectedItems[0];
 			listView.Items.Remove(item);
+		}
+		
+		protected ListBox GetListBox(string group)
+		{
+			return (ListBox) Controls.Find("lbx" + group, true)[0];
+		}
+		
+		void AddClick(object sender, EventArgs e)
+		{
+			var ret = Interaction.InputBox("", "Add new value");
+			if (ret != "") {
+				var listBox = GetListBox(((Control) sender).Name.Substring("add".Length));
+				listBox.Items.Add(ret);
+			}
+		}
+		
+		void EditClick(object sender, EventArgs e)
+		{
+			ListBox listBox;
+			if (sender is Button) {
+				listBox = GetListBox(((Control) sender).Name.Substring("edit".Length));
+			} else {
+				listBox = (ListBox) sender;
+			}
+			
+			if (listBox.SelectedItems.Count == 0) {
+				return;
+			}
+			
+			var val = listBox.SelectedItem.ToString();
+			var ret = Interaction.InputBox(val, "Edit value", val);
+			listBox.Items.Insert(listBox.SelectedIndex, ret);
+			listBox.Items.Remove(listBox.SelectedItem);
+		}
+		
+		void RemoveClick(object sender, EventArgs e)
+		{
+			var listBox = GetListBox(((Control) sender).Name.Substring("remove".Length));
+			if (listBox.SelectedItems.Count == 0) {
+				return;
+			}
+			listBox.Items.Remove(listBox.SelectedItem);
 		}
 		
 		void ThisFormClosing(object sender, FormClosingEventArgs e)
@@ -103,10 +152,49 @@ namespace CJGui
 				}
 				autoload.psr_0.Add(item.Text, new StrArr(list));
 			}
+			
+			autoload.classmap = new List<string>((IEnumerable<string>) lbxClassmap.Items.Cast<string>());
+			autoload.files = new List<string>((IEnumerable<string>) lbxFiles.Items.Cast<string>());
+			autoload.exclude_from_classmap = new List<string>((IEnumerable<string>) lbxExclude.Items.Cast<string>());
 		}
 		
 		void ThisFormLoad(object sender, EventArgs e)
 		{
+			if (autoload == null) {
+				return;
+			}
+			
+			if (autoload.psr_4 != null) {
+				foreach (var itm in autoload.psr_4) {
+					var lvwItm = lvwPsr_4.Items.Add(itm.Key);
+					lvwItm.SubItems.Add(itm.Value.ToString());
+				}
+			}
+			
+			if (autoload.psr_0 != null) {
+				foreach (var itm in autoload.psr_0) {
+					var lvwItm = lvwPsr_0.Items.Add(itm.Key);
+					lvwItm.SubItems.Add(itm.Value.ToString());
+				}
+			}
+			
+			if (autoload.classmap != null) {
+				foreach (var itm in autoload.classmap) {
+					lbxClassmap.Items.Add(itm);
+				}
+			}
+			
+			if (autoload.files != null) {
+				foreach (var itm in autoload.files) {
+					lbxFiles.Items.Add(itm);
+				}
+			}
+			
+			if (autoload.exclude_from_classmap != null) {
+				foreach (var itm in autoload.exclude_from_classmap) {
+					lbxExclude.Items.Add(itm);
+				}
+			}
 		}
 	}
 }

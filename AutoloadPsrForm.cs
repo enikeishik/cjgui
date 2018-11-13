@@ -32,18 +32,31 @@ namespace CJGui
 			this.psrItem = psrItem;
 		}
 		
+		void AddClick(object sender, EventArgs e)
+		{
+			var ret = Interaction.InputBox("", "Add new value");
+			if (ret != "") {
+				values.Items.Add(ret);
+			}
+		}
+		
+		void EditClick(object sender, EventArgs e)
+		{
+			if (values.SelectedItems.Count == 0) {
+				return;
+			}
+			var val = values.SelectedItem.ToString();
+			var ret = Interaction.InputBox(val, "Edit value", val);
+			values.Items.Insert(values.SelectedIndex, ret);
+			values.Items.Remove(values.SelectedItem);
+		}
+		
 		void RemoveClick(object sender, EventArgs e)
 		{
 			if (values.SelectedItems.Count == 0) {
 				return;
 			}
-			values.SelectedItems.Remove(values.SelectedItems[0]);
-		}
-		
-		void AddClick(object sender, EventArgs e)
-		{
-			var ret = Interaction.InputBox("", "Add new value");
-			values.Items.Add(ret);
+			values.Items.Remove(values.SelectedItems[0]);
 		}
 		
 		void CloseClick(object sender, EventArgs e)
@@ -67,7 +80,7 @@ namespace CJGui
 				return;
 			}
 			
-			key.Text = psrItem.Keys.ToList().First();
+			key.Text = psrItem.Keys.First();
 			var vals = psrItem.Values.ToList();
 			foreach (var v in vals) {
 				values.Items.Add(v);
