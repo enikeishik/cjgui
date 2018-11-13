@@ -1,35 +1,34 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: pl
- * Date: 12.11.2018
- * Time: 13:54
+ * Date: 13.11.2018
+ * Time: 13:42
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.VisualBasic;
 
 namespace CJGui
 {
 	/// <summary>
-	/// Description of AutoloadPsrForm.
+	/// Description of ListBoxForm.
 	/// </summary>
-	public partial class AutoloadPsrForm : Form
+	public partial class ListBoxForm : Form
 	{
-		protected Dictionary<string, StrArr> psrItem;
+		protected readonly List<string> items;
 		
-		protected AutoloadPsrForm()
+		protected ListBoxForm()
 		{
 			InitializeComponent();
 		}
 		
-		public AutoloadPsrForm(Dictionary<string, StrArr> psrItem)
+		public ListBoxForm(List<string> items)
 			: this()
 		{
-			this.psrItem = psrItem;
+			this.items = items;
 		}
 		
 		void AddClick(object sender, EventArgs e)
@@ -66,24 +65,21 @@ namespace CJGui
 		
 		void ThisFormClosing(object sender, FormClosingEventArgs e)
 		{
-			psrItem.Clear();
-			var list = new List<string>(values.Items.Count);
+			items.Clear();
+			items.Capacity = values.Items.Count;
 			foreach (var item in values.Items) {
-				list.Add(item.ToString());
+				items.Add(item.ToString());
 			}
-			psrItem.Add(key.Text, new StrArr(list));
 		}
 		
 		void ThisFormLoad(object sender, EventArgs e)
 		{
-			if (psrItem.Count == 0) {
+			if (items.Count == 0) {
 				return;
 			}
 			
-			key.Text = psrItem.Keys.First();
-			var vals = psrItem.Values.ToList();
-			foreach (var v in vals) {
-				values.Items.Add(v.ToString().Trim(new [] {'"'}));
+			foreach (var itm in items) {
+				values.Items.Add(itm);
 			}
 		}
 	}

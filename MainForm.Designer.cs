@@ -63,6 +63,10 @@ namespace CJGui
 		private System.Windows.Forms.TextBox provide;
 		private System.Windows.Forms.TextBox suggest;
 		private System.Windows.Forms.TextBox autoload;
+		private System.Windows.Forms.TextBox autoload_dev;
+		private System.Windows.Forms.CheckBox prefer_stable;
+		private System.Windows.Forms.CheckBox abandoned;
+		private System.Windows.Forms.TextBox bin;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -134,6 +138,10 @@ namespace CJGui
 			this.provide = new System.Windows.Forms.TextBox();
 			this.suggest = new System.Windows.Forms.TextBox();
 			this.autoload = new System.Windows.Forms.TextBox();
+			this.autoload_dev = new System.Windows.Forms.TextBox();
+			this.prefer_stable = new System.Windows.Forms.CheckBox();
+			this.abandoned = new System.Windows.Forms.CheckBox();
+			this.bin = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -487,7 +495,7 @@ namespace CJGui
 			this.minimum_stability.Location = new System.Drawing.Point(118, 443);
 			this.minimum_stability.Name = "minimum_stability";
 			this.minimum_stability.Size = new System.Drawing.Size(269, 21);
-			this.minimum_stability.TabIndex = 39;
+			this.minimum_stability.TabIndex = 20;
 			this.minimum_stability.SelectedIndexChanged += new System.EventHandler(this.FieldChanged);
 			this.minimum_stability.TextChanged += new System.EventHandler(this.FieldChanged);
 			// 
@@ -590,12 +598,56 @@ namespace CJGui
 			this.autoload.TabStop = false;
 			this.autoload.Enter += new System.EventHandler(this.AutoloadEnter);
 			// 
+			// autoload_dev
+			// 
+			this.autoload_dev.Location = new System.Drawing.Point(118, 420);
+			this.autoload_dev.Name = "autoload_dev";
+			this.autoload_dev.ReadOnly = true;
+			this.autoload_dev.Size = new System.Drawing.Size(269, 20);
+			this.autoload_dev.TabIndex = 19;
+			this.autoload_dev.TabStop = false;
+			this.autoload_dev.Enter += new System.EventHandler(this.AutoloadEnter);
+			// 
+			// prefer_stable
+			// 
+			this.prefer_stable.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.prefer_stable.Location = new System.Drawing.Point(118, 464);
+			this.prefer_stable.Name = "prefer_stable";
+			this.prefer_stable.Size = new System.Drawing.Size(269, 24);
+			this.prefer_stable.TabIndex = 21;
+			this.prefer_stable.UseVisualStyleBackColor = true;
+			this.prefer_stable.Click += new System.EventHandler(this.Prefer_stableClick);
+			// 
+			// abandoned
+			// 
+			this.abandoned.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.abandoned.Location = new System.Drawing.Point(118, 625);
+			this.abandoned.Name = "abandoned";
+			this.abandoned.Size = new System.Drawing.Size(269, 24);
+			this.abandoned.TabIndex = 39;
+			this.abandoned.UseVisualStyleBackColor = true;
+			this.abandoned.Click += new System.EventHandler(this.AbandonedClick);
+			// 
+			// bin
+			// 
+			this.bin.Location = new System.Drawing.Point(118, 581);
+			this.bin.Name = "bin";
+			this.bin.ReadOnly = true;
+			this.bin.Size = new System.Drawing.Size(269, 20);
+			this.bin.TabIndex = 40;
+			this.bin.TabStop = false;
+			this.bin.Enter += new System.EventHandler(this.BinEnter);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
 			this.ClientSize = new System.Drawing.Size(724, 461);
+			this.Controls.Add(this.bin);
+			this.Controls.Add(this.abandoned);
+			this.Controls.Add(this.prefer_stable);
+			this.Controls.Add(this.autoload_dev);
 			this.Controls.Add(this.autoload);
 			this.Controls.Add(this.suggest);
 			this.Controls.Add(this.provide);

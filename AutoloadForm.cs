@@ -51,7 +51,7 @@ namespace CJGui
 			form.ShowDialog(this);
 			
 			var item = new ListViewItem(aItem.Keys.First());
-			item.SubItems.Add(aItem.Values.First().Value);
+			item.SubItems.Add(aItem.Values.First().Value.Trim(new [] {'"'}));
 			var listView = GetListView(((Control) sender).Name.Substring("add".Length));
 			listView.Items.Add(item);
 		}
@@ -77,7 +77,7 @@ namespace CJGui
 			form.ShowDialog(this);
 			
 			item.Text = aItem.Keys.First();
-			item.SubItems[1].Text = aItem.Values.First().ToString();
+			item.SubItems[1].Text = aItem.Values.First().ToString().Trim(new [] {'"'});
 		}
 		
 		void RemovePsrClick(object sender, EventArgs e)
@@ -167,14 +167,14 @@ namespace CJGui
 			if (autoload.psr_4 != null) {
 				foreach (var itm in autoload.psr_4) {
 					var lvwItm = lvwPsr_4.Items.Add(itm.Key);
-					lvwItm.SubItems.Add(itm.Value.ToString());
+					lvwItm.SubItems.Add(itm.Value.ToString().Trim(new [] {'"'}));
 				}
 			}
 			
 			if (autoload.psr_0 != null) {
 				foreach (var itm in autoload.psr_0) {
 					var lvwItm = lvwPsr_0.Items.Add(itm.Key);
-					lvwItm.SubItems.Add(itm.Value.ToString());
+					lvwItm.SubItems.Add(itm.Value.ToString().Trim(new [] {'"'}));
 				}
 			}
 			

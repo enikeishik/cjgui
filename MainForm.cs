@@ -31,6 +31,9 @@ namespace CJGui
 			InitializeComponent();
 			
 			data = new Data();
+			
+			prefer_stable.Checked = data.prefer_stable;
+			abandoned.Checked = data.abandoned;
 		}
 		
 		protected string FormatJson(string json)
@@ -50,6 +53,14 @@ namespace CJGui
 		protected string FixName(string name)
 		{
 			return name.Replace('_', '-');
+		}
+		
+		protected string FixStrArr(string str)
+		{
+			if (str.IndexOf("\"[") == 0 && str.LastIndexOf("]\"") == (str.Length - 2)) {
+				return str.Trim(new [] {'"'});
+			}
+			return str;
 		}
 		
 		protected string GetObjectJson(object obj)
@@ -105,7 +116,7 @@ namespace CJGui
 				//TODO: modify GetItemFieldsJson to walk through string(value)|object(fields)
 				//items[++i] = pad + GetItemFieldsJson(item.Value) + ",";
 				if (raw) {
-					items[++i] = pad + "\"" + item.Key + "\":" + item.Value.ToString() + ",";
+					items[++i] = pad + "\"" + item.Key + "\":" + FixStrArr(item.Value.ToString()) + ",";
 				} else {
 					items[++i] = pad + "\"" + item.Key + "\":\"" + EscapeSpecialChars(item.Value.ToString()) + "\",";
 				}
@@ -150,6 +161,10 @@ namespace CJGui
 					return GetItemsJsonStrings<string>(name, list, pad, level);
 				}
 				return new string[] {};
+			}
+			
+			if (val is StrArr) {
+				return new string[] {pad + "\"" + FixName(name) + "\":" + val};
 			}
 			
 			if (name == "authors") {
@@ -350,6 +365,30 @@ namespace CJGui
 			UpdateJson();
 			
 			formControl.Parent.SelectNextControl(ActiveControl, true, true, true, true);
+		}
+		
+		void Prefer_stableClick(object sender, EventArgs e)
+		{
+			data.prefer_stable = prefer_stable.Checked;
+			UpdateJson();
+		}
+		
+		void AbandonedClick(object sender, EventArgs e)
+		{
+			data.abandoned = abandoned.Checked;
+			UpdateJson();
+		}
+		
+		void BinEnter(object sender, EventArgs e)
+		{
+			if (data.bin == null) {
+				data.bin = new StrArr();
+			}
+			
+			var form = new ListBoxForm(data.bin.Values);
+			form.ShowDialog();
+			
+			UpdateJson();
 		}
 	}
 }

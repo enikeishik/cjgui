@@ -16,22 +16,21 @@ namespace CJGui
 	/// </summary>
 	public class StrArr
 	{
-		protected List<string> strarr;
 		
 		public string Value
 		{
 			get
 			{
-				if (strarr.Count == 0) {
-					return "";
+				if (Values.Count == 0) {
+					return "\"\"";
 				}
 				
-				if (strarr.Count == 1) {
-					return strarr[0];
+				if (Values.Count == 1) {
+					return "\"" + Values[0] + "\"";
 				}
 				
 				var str = "[";
-				foreach (var val in strarr) {
+				foreach (var val in Values) {
 					str += "\"" + val + "\",";
 				}
 				return str.Substring(0, str.Length - 1) + "]";
@@ -39,9 +38,9 @@ namespace CJGui
 			
 			set
 			{
-				strarr.Clear();
+				Values.Clear();
 				
-				if (value.IndexOf("[\"") == 0 && value.LastIndexOf("\"]") == (value.Length - 1)) {
+				if (value.IndexOf("[\"") == 0 && value.LastIndexOf("\"]") == (value.Length - 2)) {
 					var arr = value
 						.Trim(new [] {'[', ']'})
 						.Replace("\", \"", "\",\"")
@@ -50,12 +49,19 @@ namespace CJGui
 							StringSplitOptions.RemoveEmptyEntries
 						);
 					foreach (var s in arr) {
-						strarr.Add(s);
+						Values.Add(s);
 					}
+				} else if (value.IndexOf('"') == 0 && value.LastIndexOf('"') == (value.Length - 1)) {
+					Values.Add(value.Trim(new [] {'"'}));
 				} else {
-					strarr.Add(value);
+					Values.Add(value);
 				}
 			}
+		}
+		
+		public List<string> Values
+		{
+			get; set;
 		}
 		
 		public override string ToString()
@@ -63,9 +69,9 @@ namespace CJGui
 			return Value;
 		}
 		
-		protected StrArr()
+		public StrArr()
 		{
-			strarr = new List<string>();
+			Values = new List<string>();
 		}
 		
 		public StrArr(string str) 
@@ -77,7 +83,7 @@ namespace CJGui
 		public StrArr(List<string> strs)
 			: this()
 		{
-			strarr = strs;
+			Values = strs;
 		}
 	}
 }
