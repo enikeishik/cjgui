@@ -135,7 +135,7 @@ namespace CJGui
         protected string[] GetValFormated(string name, object val, string pad, int level)
         {
             //TODO: temporary stub
-            if (name == "repositories" || name == "config" || name == "scripts") {
+            if (name == "repositories" || name == "config") {
                 if ((string) val == "") {
                     return new string[0];
                 }
@@ -178,7 +178,10 @@ namespace CJGui
             }
             
             if (val is StrArr) {
-                return new string[] {pad + "\"" + FixName(name) + "\":" + val};
+                if (((StrArr) val).Values.Count == 0) {
+                    return new string[0];
+                }
+                return new [] {pad + "\"" + FixName(name) + "\":" + val};
             }
             
             if (name == "authors") {
@@ -449,6 +452,40 @@ namespace CJGui
             form.ShowDialog();
             
             formControl.Text = (new StrArr(dataField.exclude)).ToString().Trim(new [] {'"'});
+            data.GetType().GetField(formControl.Name).SetValue(data, dataField);
+            
+            UpdateJson();
+            
+            ((Control) sender).Parent.SelectNextControl(ActiveControl, true, true, true, true);
+        }
+        
+        void ScriptsEnter(object sender, EventArgs e)
+        {
+            var formControl = (Control) sender;
+            
+            var dataField = (Scripts) data.GetType().GetField(formControl.Name).GetValue(data);
+            
+            if (dataField == null) {
+                dataField = new Scripts();
+            }
+            
+            var form = new ScriptsForm(dataField);
+            form.ShowDialog();
+            
+            foreach (var fld in dataField.GetType().GetFields()) {
+                bool empty = true;
+                if (fld.Name != "custom") {
+                    empty = ((StrArr) fld.GetValue(dataField)).Values.Count == 0;
+                } else {
+                    empty = ((Dictionary<string, StrArr>) fld.GetValue(dataField)).Count == 0;
+                }
+                if (!empty) {
+                    formControl.Text += ", " + FixName(fld.Name);
+                }
+            }
+            if (formControl.Text.Length > 0) {
+                formControl.Text = formControl.Text.Substring(2);
+            }
             data.GetType().GetField(formControl.Name).SetValue(data, dataField);
             
             UpdateJson();

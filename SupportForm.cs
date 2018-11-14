@@ -22,7 +22,7 @@ namespace CJGui
     /// </summary>
     public partial class SupportForm : Form
     {
-        protected Support support;
+        protected readonly Support support;
         
         protected SupportForm()
         {

@@ -676,9 +676,11 @@ namespace CJGui
             // 
             this.scripts.Location = new System.Drawing.Point(118, 535);
             this.scripts.Name = "scripts";
+            this.scripts.ReadOnly = true;
             this.scripts.Size = new System.Drawing.Size(269, 20);
             this.scripts.TabIndex = 24;
-            this.scripts.TextChanged += new System.EventHandler(this.FieldChanged);
+            this.scripts.TabStop = false;
+            this.scripts.Enter += new System.EventHandler(this.ScriptsEnter);
             // 
             // extra
             // 

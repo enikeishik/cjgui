@@ -111,6 +111,11 @@
     <Compile Include="PackagesForm.Designer.cs">
       <DependentUpon>PackagesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Scripts.cs" />
+    <Compile Include="ScriptsForm.cs" />
+    <Compile Include="ScriptsForm.Designer.cs">
+      <DependentUpon>ScriptsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="StrArr.cs" />
     <Compile Include="Support.cs" />
     <Compile Include="SupportForm.cs" />
@@ -145,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PackagesForm.resx">
       <DependentUpon>PackagesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptsForm.resx">
+      <DependentUpon>ScriptsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SupportForm.resx">
       <DependentUpon>SupportForm.cs</DependentUpon>
