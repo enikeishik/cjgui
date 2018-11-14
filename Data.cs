@@ -24,7 +24,7 @@ namespace CJGui
         public string name = ""; //!
         public string description = ""; //!
         public string version;
-        public string type = ""; //! library|project|metapackage|composer-plugin|[a-z0-9-]+
+        public string type = "library"; // library|project|metapackage|composer-plugin|[a-z0-9-]+
         public string keywords;
         public string homepage;
         public string readme;
@@ -49,6 +49,6 @@ namespace CJGui
         public StrArr bin;
         public object archive;
         public bool abandoned = false; //|string
-        public object non_feature_branches; //[]
+        public List<string> non_feature_branches; //[]
     }
 }

@@ -272,7 +272,7 @@ namespace CJGui
             // json
             // 
             this.json.Dock = System.Windows.Forms.DockStyle.Right;
-            this.json.Location = new System.Drawing.Point(410, 0);
+            this.json.Location = new System.Drawing.Point(427, 0);
             this.json.Multiline = true;
             this.json.Name = "json";
             this.json.ReadOnly = true;
@@ -297,7 +297,7 @@ namespace CJGui
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(100, 23);
             this.label9.TabIndex = 13;
-            this.label9.Text = "type*";
+            this.label9.Text = "type";
             // 
             // version
             // 
@@ -319,6 +319,7 @@ namespace CJGui
             this.type.Name = "type";
             this.type.Size = new System.Drawing.Size(269, 21);
             this.type.TabIndex = 4;
+            this.type.Text = "library";
             this.type.TextChanged += new System.EventHandler(this.FieldChanged);
             this.type.Validating += new System.ComponentModel.CancelEventHandler(this.FieldValidating);
             // 
@@ -699,16 +700,18 @@ namespace CJGui
             // 
             this.non_feature_branches.Location = new System.Drawing.Point(118, 650);
             this.non_feature_branches.Name = "non_feature_branches";
+            this.non_feature_branches.ReadOnly = true;
             this.non_feature_branches.Size = new System.Drawing.Size(269, 20);
             this.non_feature_branches.TabIndex = 29;
-            this.non_feature_branches.TextChanged += new System.EventHandler(this.FieldChanged);
+            this.non_feature_branches.TabStop = false;
+            this.non_feature_branches.Enter += new System.EventHandler(this.Non_feature_branchesEnter);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(741, 461);
+            this.ClientSize = new System.Drawing.Size(758, 461);
             this.Controls.Add(this.non_feature_branches);
             this.Controls.Add(this.archive);
             this.Controls.Add(this.extra);

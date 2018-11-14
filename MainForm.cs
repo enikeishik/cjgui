@@ -37,6 +37,7 @@ namespace CJGui
             
             data = new Data();
             
+            type.SelectedIndex = 0;
             prefer_stable.Checked = data.prefer_stable;
             abandoned.Checked = data.abandoned;
         }
@@ -134,7 +135,7 @@ namespace CJGui
         protected string[] GetValFormated(string name, object val, string pad, int level)
         {
             //TODO: temporary stub
-            if (name == "repositories" || name == "config" || name == "scripts" || name == "extra" || name == "archive" || name == "non_feature_branches") {
+            if (name == "repositories" || name == "config" || name == "scripts" || name == "extra" || name == "archive") {
                 if ((string) val == "") {
                     return new string[0];
                 }
@@ -394,12 +395,40 @@ namespace CJGui
         
         void BinEnter(object sender, EventArgs e)
         {
-            if (data.bin == null) {
-                data.bin = new StrArr();
+            var formControl = (Control) sender;
+            
+            var dataField = (StrArr) data.GetType().GetField(formControl.Name).GetValue(data);
+            
+            if (dataField == null) {
+                dataField = new StrArr();
             }
             
-            var form = new ListBoxForm(data.bin.Values);
+            var form = new ListBoxForm(dataField.Values);
             form.ShowDialog();
+            
+            formControl.Text = dataField.ToString().Trim(new [] {'"'});
+            data.GetType().GetField(formControl.Name).SetValue(data, dataField);
+            
+            UpdateJson();
+            
+            ((Control) sender).Parent.SelectNextControl(ActiveControl, true, true, true, true);
+        }
+        
+        void Non_feature_branchesEnter(object sender, EventArgs e)
+        {
+            var formControl = (Control) sender;
+            
+            var dataField = (List<string>) data.GetType().GetField(formControl.Name).GetValue(data);
+            
+            if (dataField == null) {
+                dataField = new List<string>();
+            }
+            
+            var form = new ListBoxForm(dataField);
+            form.ShowDialog();
+            
+            formControl.Text = (new StrArr(dataField)).ToString().Trim(new [] {'"'});
+            data.GetType().GetField(formControl.Name).SetValue(data, dataField);
             
             UpdateJson();
             
