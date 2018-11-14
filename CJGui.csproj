@@ -73,6 +73,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Archive.cs" />
     <Compile Include="Author.cs" />
     <Compile Include="AuthorForm.cs" />
     <Compile Include="AuthorForm.Designer.cs">

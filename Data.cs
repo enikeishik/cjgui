@@ -47,7 +47,7 @@ namespace CJGui
         public object scripts;
         public object extra;
         public StrArr bin;
-        public object archive;
+        public Archive archive;
         public bool abandoned = false; //|string
         public List<string> non_feature_branches; //[]
     }

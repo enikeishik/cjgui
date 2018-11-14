@@ -135,7 +135,7 @@ namespace CJGui
         protected string[] GetValFormated(string name, object val, string pad, int level)
         {
             //TODO: temporary stub
-            if (name == "repositories" || name == "config" || name == "scripts" || name == "extra" || name == "archive") {
+            if (name == "repositories" || name == "config" || name == "scripts" || name == "extra") {
                 if ((string) val == "") {
                     return new string[0];
                 }
@@ -428,6 +428,27 @@ namespace CJGui
             form.ShowDialog();
             
             formControl.Text = (new StrArr(dataField)).ToString().Trim(new [] {'"'});
+            data.GetType().GetField(formControl.Name).SetValue(data, dataField);
+            
+            UpdateJson();
+            
+            ((Control) sender).Parent.SelectNextControl(ActiveControl, true, true, true, true);
+        }
+        
+        void ArchiveEnter(object sender, EventArgs e)
+        {
+            var formControl = (Control) sender;
+            
+            var dataField = (Archive) data.GetType().GetField(formControl.Name).GetValue(data);
+            
+            if (dataField == null) {
+                dataField = new Archive();
+            }
+            
+            var form = new ListBoxForm(dataField.exclude);
+            form.ShowDialog();
+            
+            formControl.Text = (new StrArr(dataField.exclude)).ToString().Trim(new [] {'"'});
             data.GetType().GetField(formControl.Name).SetValue(data, dataField);
             
             UpdateJson();

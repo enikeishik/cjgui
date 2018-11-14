@@ -692,9 +692,11 @@ namespace CJGui
             // 
             this.archive.Location = new System.Drawing.Point(118, 604);
             this.archive.Name = "archive";
+            this.archive.ReadOnly = true;
             this.archive.Size = new System.Drawing.Size(269, 20);
             this.archive.TabIndex = 27;
-            this.archive.TextChanged += new System.EventHandler(this.FieldChanged);
+            this.archive.TabStop = false;
+            this.archive.Enter += new System.EventHandler(this.ArchiveEnter);
             // 
             // non_feature_branches
             // 
