@@ -135,7 +135,7 @@ namespace CJGui
         protected string[] GetValFormated(string name, object val, string pad, int level)
         {
             //TODO: temporary stub
-            if (name == "repositories" || name == "config" || name == "scripts" || name == "extra") {
+            if (name == "repositories" || name == "config" || name == "scripts") {
                 if ((string) val == "") {
                     return new string[0];
                 }

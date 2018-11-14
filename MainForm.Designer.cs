@@ -684,9 +684,11 @@ namespace CJGui
             // 
             this.extra.Location = new System.Drawing.Point(118, 558);
             this.extra.Name = "extra";
+            this.extra.ReadOnly = true;
             this.extra.Size = new System.Drawing.Size(269, 20);
             this.extra.TabIndex = 25;
-            this.extra.TextChanged += new System.EventHandler(this.FieldChanged);
+            this.extra.TabStop = false;
+            this.extra.Enter += new System.EventHandler(this.DictFieldEnter);
             // 
             // archive
             // 

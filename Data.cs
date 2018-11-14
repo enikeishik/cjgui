@@ -45,7 +45,7 @@ namespace CJGui
         public object repositories;
         public object config;
         public object scripts;
-        public object extra;
+        public Dictionary<string, string> extra;
         public StrArr bin;
         public Archive archive;
         public bool abandoned = false; //|string
