@@ -92,6 +92,8 @@
     <Compile Include="AutoloadPsrForm.Designer.cs">
       <DependentUpon>AutoloadPsrForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Config.cs" />
+    <Compile Include="ConfigHttpBasic.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="ListBoxForm.cs" />
     <Compile Include="ListBoxForm.Designer.cs">
@@ -117,6 +119,8 @@
       <DependentUpon>ScriptsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="StrArr.cs" />
+    <Compile Include="StrBool.cs" />
+    <Compile Include="StrObj.cs" />
     <Compile Include="Support.cs" />
     <Compile Include="SupportForm.cs" />
     <Compile Include="SupportForm.Designer.cs">

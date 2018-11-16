@@ -44,7 +44,7 @@ namespace CJGui
         public bool prefer_stable = true;
         public object repositories;
         public object config;
-        public object scripts;
+        public Scripts scripts;
         public Dictionary<string, string> extra;
         public StrArr bin;
         public Archive archive;
