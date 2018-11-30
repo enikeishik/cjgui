@@ -93,6 +93,10 @@
       <DependentUpon>AutoloadPsrForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Config.cs" />
+    <Compile Include="ConfigForm.cs" />
+    <Compile Include="ConfigForm.Designer.cs">
+      <DependentUpon>ConfigForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConfigHttpBasic.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="ListBoxForm.cs" />
@@ -142,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AutoloadPsrForm.resx">
       <DependentUpon>AutoloadPsrForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigForm.resx">
+      <DependentUpon>ConfigForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListBoxForm.resx">
       <DependentUpon>ListBoxForm.cs</DependentUpon>
