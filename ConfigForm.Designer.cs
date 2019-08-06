@@ -83,6 +83,7 @@ namespace CJGui
         private System.Windows.Forms.CheckBox htaccess_protect;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.CheckBox sort_packages;
+        private System.Windows.Forms.Button close;
         
         /// <summary>
         /// Disposes resources used by the form.
@@ -169,6 +170,7 @@ namespace CJGui
             this.htaccess_protect = new System.Windows.Forms.CheckBox();
             this.label34 = new System.Windows.Forms.Label();
             this.sort_packages = new System.Windows.Forms.CheckBox();
+            this.close = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.process_timeout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cache_ttl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cache_files_ttl)).BeginInit();
@@ -730,11 +732,24 @@ namespace CJGui
             this.sort_packages.TabIndex = 67;
             this.sort_packages.UseVisualStyleBackColor = true;
             // 
+            // close
+            // 
+            this.close.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.close.Location = new System.Drawing.Point(12, 466);
+            this.close.Name = "close";
+            this.close.Size = new System.Drawing.Size(480, 23);
+            this.close.TabIndex = 68;
+            this.close.Text = "close";
+            this.close.UseVisualStyleBackColor = true;
+            this.close.Click += new System.EventHandler(this.CloseClick);
+            // 
             // ConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.close;
             this.ClientSize = new System.Drawing.Size(504, 501);
+            this.Controls.Add(this.close);
             this.Controls.Add(this.sort_packages);
             this.Controls.Add(this.label34);
             this.Controls.Add(this.htaccess_protect);

@@ -34,5 +34,10 @@ namespace CJGui
         {
             this.config = config;
         }
+        
+        void CloseClick(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
