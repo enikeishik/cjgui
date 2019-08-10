@@ -106,6 +106,7 @@ namespace CJGui
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ListBoxForm";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Items";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ThisFormClosing);

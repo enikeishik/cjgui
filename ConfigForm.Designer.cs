@@ -817,6 +817,7 @@ namespace CJGui
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "ConfigForm";
+            this.ShowInTaskbar = false;
             this.Text = "Config";
             ((System.ComponentModel.ISupportInitialize)(this.process_timeout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cache_ttl)).EndInit();

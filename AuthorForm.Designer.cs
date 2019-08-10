@@ -166,6 +166,7 @@ namespace CJGui
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AuthorForm";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Author";
             this.ResumeLayout(false);

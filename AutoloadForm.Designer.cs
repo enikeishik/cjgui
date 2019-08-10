@@ -391,6 +391,7 @@ namespace CJGui
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "AutoloadForm";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Autoload";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ThisFormClosing);

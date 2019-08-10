@@ -250,6 +250,7 @@ namespace CJGui
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SupportForm";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Support";
             this.ResumeLayout(false);

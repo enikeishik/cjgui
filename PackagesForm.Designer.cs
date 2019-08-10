@@ -138,7 +138,8 @@ namespace CJGui
             this.Controls.Add(this.add);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.Name = "PackageForm";
+            this.Name = "PackagesForm";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Packages";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ThisFormClosing);

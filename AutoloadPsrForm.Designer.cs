@@ -138,6 +138,7 @@ namespace CJGui
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AutoloadPsrForm";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "PSR";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ThisFormClosing);

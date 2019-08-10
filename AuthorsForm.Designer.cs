@@ -155,6 +155,7 @@ namespace CJGui
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "AuthorsForm";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Authors";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ThisFormClosing);

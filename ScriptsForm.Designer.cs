@@ -310,6 +310,7 @@ namespace CJGui
             // 
             // close
             // 
+            this.close.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.close.Location = new System.Drawing.Point(12, 326);
             this.close.Name = "close";
             this.close.Size = new System.Drawing.Size(360, 23);
@@ -353,6 +354,7 @@ namespace CJGui
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ScriptsForm";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Scripts";
             this.ResumeLayout(false);
