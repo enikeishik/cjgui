@@ -99,6 +99,10 @@
     </Compile>
     <Compile Include="ConfigHttpBasic.cs" />
     <Compile Include="Data.cs" />
+    <Compile Include="InputBoxForm.cs" />
+    <Compile Include="InputBoxForm.Designer.cs">
+      <DependentUpon>InputBoxForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListBoxForm.cs" />
     <Compile Include="ListBoxForm.Designer.cs">
       <DependentUpon>ListBoxForm.cs</DependentUpon>
@@ -149,6 +153,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConfigForm.resx">
       <DependentUpon>ConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxForm.resx">
+      <DependentUpon>InputBoxForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListBoxForm.resx">
       <DependentUpon>ListBoxForm.cs</DependentUpon>
