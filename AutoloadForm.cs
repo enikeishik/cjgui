@@ -64,15 +64,13 @@ namespace CJGui
         void EditPsrClick(object sender, EventArgs e)
         {
             ListView listView;
-            if (sender is Button) {
+            if (sender is Button)
                 listView = GetListView(((Control) sender).Name.Substring("edit".Length));
-            } else {
+            else
                 listView = (ListView) sender;
-            }
             
-            if (listView.SelectedItems.Count == 0) {
+            if (listView.SelectedItems.Count == 0)
                 return;
-            }
             
             var item = listView.SelectedItems[0];
             var aItem = new Dictionary<string, StrArr>(1);
@@ -89,9 +87,9 @@ namespace CJGui
         {
             var listView = GetListView(((Control) sender).Name.Substring("remove".Length));
             
-            if (listView.SelectedItems.Count == 0) {
+            if (listView.SelectedItems.Count == 0)
                 return;
-            }
+            
             var item = listView.SelectedItems[0];
             listView.Items.Remove(item);
         }
@@ -113,15 +111,13 @@ namespace CJGui
         void EditClick(object sender, EventArgs e)
         {
             ListBox listBox;
-            if (sender is Button) {
+            if (sender is Button)
                 listBox = GetListBox(((Control) sender).Name.Substring("edit".Length));
-            } else {
+            else
                 listBox = (ListBox) sender;
-            }
             
-            if (listBox.SelectedItems.Count == 0) {
+            if (listBox.SelectedItems.Count == 0)
                 return;
-            }
             
             var val = listBox.SelectedItem.ToString();
             var ret = Interaction.InputBox(val, "Edit value", val);
@@ -132,9 +128,8 @@ namespace CJGui
         void RemoveClick(object sender, EventArgs e)
         {
             var listBox = GetListBox(((Control) sender).Name.Substring("remove".Length));
-            if (listBox.SelectedItems.Count == 0) {
+            if (listBox.SelectedItems.Count == 0)
                 return;
-            }
             listBox.Items.Remove(listBox.SelectedItem);
         }
         
@@ -143,18 +138,16 @@ namespace CJGui
             autoload.psr_4 = new Dictionary<string, StrArr>(lvwPsr_4.Items.Count);
             foreach (ListViewItem item in lvwPsr_4.Items) {
                 List<string> list = new List<string>(item.SubItems.Count);
-                for (var i = 1; i < item.SubItems.Count; i++) {
+                for (var i = 1; i < item.SubItems.Count; i++)
                     list.Add(item.SubItems[i].Text);
-                }
                 autoload.psr_4.Add(item.Text, new StrArr(list));
             }
             
             autoload.psr_0 = new Dictionary<string, StrArr>(lvwPsr_0.Items.Count);
             foreach (ListViewItem item in lvwPsr_0.Items) {
                 List<string> list = new List<string>(item.SubItems.Count);
-                for (var i = 1; i < item.SubItems.Count; i++) {
+                for (var i = 1; i < item.SubItems.Count; i++)
                     list.Add(item.SubItems[i].Text);
-                }
                 autoload.psr_0.Add(item.Text, new StrArr(list));
             }
             
@@ -165,9 +158,8 @@ namespace CJGui
         
         void ThisFormLoad(object sender, EventArgs e)
         {
-            if (autoload == null) {
+            if (autoload == null)
                 return;
-            }
             
             if (autoload.psr_4 != null) {
                 foreach (var itm in autoload.psr_4) {
@@ -184,21 +176,18 @@ namespace CJGui
             }
             
             if (autoload.classmap != null) {
-                foreach (var itm in autoload.classmap) {
+                foreach (var itm in autoload.classmap)
                     lbxClassmap.Items.Add(itm);
-                }
             }
             
             if (autoload.files != null) {
-                foreach (var itm in autoload.files) {
+                foreach (var itm in autoload.files)
                     lbxFiles.Items.Add(itm);
-                }
             }
             
             if (autoload.exclude_from_classmap != null) {
-                foreach (var itm in autoload.exclude_from_classmap) {
+                foreach (var itm in autoload.exclude_from_classmap)
                     lbxExclude.Items.Add(itm);
-                }
             }
         }
     }
