@@ -45,9 +45,8 @@ namespace CJGui
             Author newAuthor = new Author();
             
             var form = new AuthorForm(newAuthor);
-            if (form.ShowDialog(this) == DialogResult.Cancel) {
+            if (form.ShowDialog(this) == DialogResult.Cancel)
                 return;
-            }
             
             var item = new ListViewItem(newAuthor.name);
             item.SubItems.Add(newAuthor.email);
@@ -58,9 +57,8 @@ namespace CJGui
         
         void EditClick(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Count == 0) {
+            if (listView1.SelectedItems.Count == 0)
                 return;
-            }
             
             var item = listView1.SelectedItems[0];
             Author editAuthor = new Author(
@@ -71,9 +69,8 @@ namespace CJGui
             );
             
             var form = new AuthorForm(editAuthor);
-            if (form.ShowDialog(this) == DialogResult.Cancel) {
+            if (form.ShowDialog(this) == DialogResult.Cancel)
                 return;
-            }
             
             item.Text = editAuthor.name;
             item.SubItems[1].Text = editAuthor.email;
@@ -83,9 +80,9 @@ namespace CJGui
         
         void RemoveClick(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Count == 0) {
+            if (listView1.SelectedItems.Count == 0)
                 return;
-            }
+            
             var item = listView1.SelectedItems[0];
             listView1.Items.Remove(item);
         }
@@ -106,9 +103,8 @@ namespace CJGui
         
         void ThisFormLoad(object sender, EventArgs e)
         {
-            if (data.authors == null) {
+            if (data.authors == null)
                 return;
-            }
             
             foreach (Author author in data.authors) {
                 ListViewItem item = listView1.Items.Add(author.name);
