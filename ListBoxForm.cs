@@ -46,9 +46,9 @@ namespace CJGui
         
         void EditClick(object sender, EventArgs e)
         {
-            if (values.SelectedItems.Count == 0) {
+            if (values.SelectedItems.Count == 0)
                 return;
-            }
+            
             var val = values.SelectedItem.ToString();
             var ret = Interaction.InputBox(val, "Edit value", val);
             values.Items.Insert(values.SelectedIndex, ret);
@@ -57,9 +57,9 @@ namespace CJGui
         
         void RemoveClick(object sender, EventArgs e)
         {
-            if (values.SelectedItems.Count == 0) {
+            if (values.SelectedItems.Count == 0)
                 return;
-            }
+            
             values.Items.Remove(values.SelectedItems[0]);
         }
         
@@ -72,20 +72,19 @@ namespace CJGui
         {
             items.Clear();
             items.Capacity = values.Items.Count;
-            foreach (var item in values.Items) {
+            
+            foreach (var item in values.Items)
                 items.Add(item.ToString());
-            }
         }
         
         void ThisFormLoad(object sender, EventArgs e)
         {
-            if (items.Count == 0) {
+            if (items.Count == 0)
                 return;
-            }
             
-            foreach (var itm in items) {
+            
+            foreach (var itm in items)
                 values.Items.Add(itm);
-            }
         }
     }
 }
