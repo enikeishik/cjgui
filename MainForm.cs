@@ -63,9 +63,9 @@ namespace CJGui
         
         protected string FixStrArr(string str)
         {
-            if (str.IndexOf("\"[") == 0 && str.LastIndexOf("]\"") == (str.Length - 2)) {
+            if (str.IndexOf("\"[") == 0 && str.LastIndexOf("]\"") == (str.Length - 2))
                 return str.Trim(new [] {'"'});
-            }
+            
             return str;
         }
         
@@ -75,9 +75,10 @@ namespace CJGui
             var fields = obj.GetType().GetFields();
             foreach (var field in fields) {
                 var val = field.GetValue(obj).ToString();
-                if (val == "") {
+                
+                if (val == "")
                     continue;
-                }
+                
                 ret += "\"" + field.Name + "\":\"" + EscapeSpecialChars(val) + "\",";
             }
             return ret.Substring(0, ret.Length - 1) + "}";
@@ -90,9 +91,9 @@ namespace CJGui
         
         protected string GetItemFieldsJson(object item)
         {
-            if (item is string) {
+            if (item is string)
                 return GetStringJson((string) item);
-            }
+            
             return GetObjectJson(item);
         }
         
@@ -103,9 +104,9 @@ namespace CJGui
             items[items.Length - 1] = pad + "],";
             pad = "".PadLeft(++level * PADDING);
             int i = 0;
-            foreach (var item in itemsList) {
+            foreach (var item in itemsList)
                 items[++i] = pad + GetItemFieldsJson(item) + ",";
-            }
+            
             var lastItem = items[items.Length - 2];
             items[items.Length - 2] = lastItem.Substring(0, lastItem.Length - 1);
             return items;
@@ -121,11 +122,10 @@ namespace CJGui
             foreach (var item in itemsDict) {
                 //TODO: modify GetItemFieldsJson to walk through string(value)|object(fields)
                 //items[++i] = pad + GetItemFieldsJson(item.Value) + ",";
-                if (raw) {
+                if (raw)
                     items[++i] = pad + "\"" + item.Key + "\":" + FixStrArr(item.Value.ToString()) + ",";
-                } else {
+                else
                     items[++i] = pad + "\"" + item.Key + "\":\"" + EscapeSpecialChars(item.Value.ToString()) + "\",";
-                }
             }
             var lastItem = items[items.Length - 2];
             items[items.Length - 2] = lastItem.Substring(0, lastItem.Length - 1);
@@ -136,57 +136,55 @@ namespace CJGui
         {
             //TODO: temporary stub
             if (name == "repositories" || name == "config") {
-                if ((string) val == "") {
+                if ((string) val == "")
                     return new string[0];
-                }
+                
                 return new [] { pad + "\"" + FixName(name) + "\":" + (string) val + "," };
             }
             
             if (val is string) {
-                if ((string) val == "") {
+                if ((string) val == "")
                     return new string[0];
-                }
+                
                 return new [] { pad + "\"" + FixName(name) + "\":\"" + EscapeSpecialChars((string) val) + "\"," };
             }
             
-            if (val is bool) {
+            if (val is bool)
                 return new [] { pad + "\"" + FixName(name) + "\":\"" + val.ToString().ToLower() + "\"," };
-            }
             
             if (val is Dictionary<string, string>) {
                 var dict = (Dictionary<string, string>) val;
-                if (dict.Count > 0) {
+                if (dict.Count > 0)
                     return GetItemsJsonStrings<string>(name, dict, pad, level);
-                }
+                
                 return new string[] {};
             }
             
             if (val is Dictionary<string, StrArr>) {
                 var dict = (Dictionary<string, StrArr>) val;
-                if (dict.Count > 0) {
+                if (dict.Count > 0)
                     return GetItemsJsonStrings<StrArr>(name, dict, pad, level, true);
-                }
+                
                 return new string[] {};
             }
             
             if (val is List<string>) {
                 var list = (List<string>) val;
-                if (list.Count > 0) {
+                if (list.Count > 0)
                     return GetItemsJsonStrings<string>(name, list, pad, level);
-                }
+                
                 return new string[] {};
             }
             
             if (val is StrArr) {
-                if (((StrArr) val).Values.Count == 0) {
+                if (((StrArr) val).Values.Count == 0)
                     return new string[0];
-                }
+                
                 return new [] {pad + "\"" + FixName(name) + "\":" + val};
             }
             
-            if (name == "authors") {
+            if (name == "authors")
                 return GetItemsJsonStrings<Author>(name, (List<Author>) val, pad, level);
-            }
             
             if (val != null) {
                 return new [] {
@@ -202,19 +200,18 @@ namespace CJGui
             string pad = "".PadLeft(level * PADDING);
             
             var sb = new StringBuilder();
-            if (level == 0) {
+            if (level == 0)
                 sb.AppendLine(pad + "{");
-            }
+            
             pad = "".PadLeft(++level * PADDING);
             
             var fields = obj.GetType().GetFields();
             foreach(var field in fields) {
-                if (field.GetValue(obj) == null) {
+                if (field.GetValue(obj) == null)
                     continue;
-                }
-                foreach (var s in GetValFormated(field.Name, field.GetValue(obj), pad, level)) {
+                
+                foreach (var s in GetValFormated(field.Name, field.GetValue(obj), pad, level))
                     sb.AppendLine(s);
-                }
             }
             
             pad = "".PadLeft(--level * PADDING);
@@ -222,9 +219,8 @@ namespace CJGui
             
             string jsonString = sb.ToString();
             int pos = jsonString.LastIndexOf(',');
-            if (pos != -1) {
+            if (pos != -1)
                 jsonString = jsonString.Substring(0, pos) + jsonString.Substring(pos + 1);
-            }
             
             return jsonString;
         }
@@ -266,16 +262,14 @@ namespace CJGui
         void FieldValidating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             var ctrl = (Control) sender;
-            if (requiredFields.Contains(ctrl.Name)) {
+            if (requiredFields.Contains(ctrl.Name))
                 e.Cancel = ctrl.Text == "";
-            }
         }
         
         void AuthorsEnter(object sender, EventArgs e)
         {
-            if (data.authors == null) {
+            if (data.authors == null)
                 data.authors = new List<Author>();
-            }
             
             var form = new AuthorsForm(data);
             form.ShowDialog();
@@ -297,19 +291,17 @@ namespace CJGui
         
         void SupportsEnter(object sender, EventArgs e)
         {
-            if (data.support == null) {
+            if (data.support == null)
                 data.support = new Support();
-            }
             
             var form = new SupportForm(data.support);
             form.ShowDialog();
             
             supports.Text = "";
-            if (data.support.email == "") {
+            if (data.support.email == "")
                 data.support = null;
-            } else {
+            else
                 supports.Text += data.support.email;
-            }
             
             UpdateJson();
             
@@ -322,9 +314,8 @@ namespace CJGui
             
             var dataField = (Dictionary<string, string>) data.GetType().GetField(formControl.Name).GetValue(data);
             
-            if (dataField == null) {
+            if (dataField == null)
                 dataField = new Dictionary<string, string>();
-            }
             
             var form = new PackagesForm(dataField);
             form.ShowDialog();
@@ -351,32 +342,32 @@ namespace CJGui
             
             var dataField = (Autoload) data.GetType().GetField(formControl.Name).GetValue(data);
     
-            if (dataField == null) {
+            if (dataField == null)
                 dataField = new Autoload();
-            }
             
             var form = new AutoloadForm(dataField);
             form.ShowDialog();
             
             formControl.Text = "";
-            if (dataField.psr_4.Keys.Count > 0) {
+            
+            if (dataField.psr_4.Keys.Count > 0)
                 formControl.Text += ", PSR-4";
-            }
-            if (dataField.psr_0.Keys.Count > 0) {
+            
+            if (dataField.psr_0.Keys.Count > 0)
                 formControl.Text += ", PSR-0";
-            }
-            if (dataField.classmap.Count > 0) {
+            
+            if (dataField.classmap.Count > 0)
                 formControl.Text += ", Classmap";
-            }
-            if (dataField.files.Count > 0) {
+            
+            if (dataField.files.Count > 0)
                 formControl.Text += ", Files";
-            }
-            if (dataField.exclude_from_classmap.Count > 0) {
+            
+            if (dataField.exclude_from_classmap.Count > 0)
                 formControl.Text += ", Excluded from classmap";
-            }
-            if (formControl.Text.Length > 0) {
+            
+            if (formControl.Text.Length > 0)
                 formControl.Text = formControl.Text.Substring(2);
-            }
+            
             data.GetType().GetField(formControl.Name).SetValue(data, dataField);
             
             UpdateJson();
@@ -402,9 +393,9 @@ namespace CJGui
             
             var dataField = (StrArr) data.GetType().GetField(formControl.Name).GetValue(data);
             
-            if (dataField == null) {
+            if (dataField == null)
                 dataField = new StrArr();
-            }
+            
             
             var form = new ListBoxForm(dataField.Values);
             form.ShowDialog();
@@ -423,9 +414,9 @@ namespace CJGui
             
             var dataField = (List<string>) data.GetType().GetField(formControl.Name).GetValue(data);
             
-            if (dataField == null) {
+            if (dataField == null)
                 dataField = new List<string>();
-            }
+            
             
             var form = new ListBoxForm(dataField);
             form.ShowDialog();
@@ -444,9 +435,9 @@ namespace CJGui
             
             var dataField = (Archive) data.GetType().GetField(formControl.Name).GetValue(data);
             
-            if (dataField == null) {
+            if (dataField == null)
                 dataField = new Archive();
-            }
+            
             
             var form = new ListBoxForm(dataField.exclude);
             form.ShowDialog();
@@ -465,27 +456,27 @@ namespace CJGui
             
             var dataField = (Scripts) data.GetType().GetField(formControl.Name).GetValue(data);
             
-            if (dataField == null) {
+            if (dataField == null)
                 dataField = new Scripts();
-            }
+            
             
             var form = new ScriptsForm(dataField);
             form.ShowDialog();
             
             foreach (var fld in dataField.GetType().GetFields()) {
                 bool empty = true;
-                if (fld.Name != "custom") {
+                if (fld.Name != "custom")
                     empty = ((StrArr) fld.GetValue(dataField)).Values.Count == 0;
-                } else {
+                else
                     empty = ((Dictionary<string, StrArr>) fld.GetValue(dataField)).Count == 0;
-                }
-                if (!empty) {
+                
+                if (!empty)
                     formControl.Text += ", " + FixName(fld.Name);
-                }
             }
-            if (formControl.Text.Length > 0) {
+            
+            if (formControl.Text.Length > 0)
                 formControl.Text = formControl.Text.Substring(2);
-            }
+            
             data.GetType().GetField(formControl.Name).SetValue(data, dataField);
             
             UpdateJson();
