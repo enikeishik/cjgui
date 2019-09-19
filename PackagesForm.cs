@@ -46,9 +46,8 @@ namespace CJGui
             var reqItem = new Dictionary<string, string>(1);
             
             var form = new PackageForm(reqItem);
-            if (form.ShowDialog(this) == DialogResult.Cancel) {
+            if (form.ShowDialog(this) == DialogResult.Cancel)
                 return;
-            }
             
             var item = new ListViewItem(reqItem.Keys.ToList().First());
             item.SubItems.Add(reqItem.Values.ToList().First());
@@ -57,18 +56,16 @@ namespace CJGui
         
         void EditClick(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Count == 0) {
+            if (listView1.SelectedItems.Count == 0)
                 return;
-            }
             
             var item = listView1.SelectedItems[0];
             var reqItem = new Dictionary<string, string>(1);
             reqItem.Add(item.Text, item.SubItems[1].Text);
             
             var form = new PackageForm(reqItem);
-            if (form.ShowDialog(this) == DialogResult.Cancel) {
+            if (form.ShowDialog(this) == DialogResult.Cancel)
                 return;
-            }
             
             item.Text = reqItem.Keys.ToList().First();
             item.SubItems[1].Text = reqItem.Values.ToList().First();
@@ -76,9 +73,9 @@ namespace CJGui
         
         void RemoveClick(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Count == 0) {
+            if (listView1.SelectedItems.Count == 0)
                 return;
-            }
+            
             var item = listView1.SelectedItems[0];
             listView1.Items.Remove(item);
         }
@@ -88,17 +85,15 @@ namespace CJGui
             require.Clear();
             
             foreach (ListViewItem item in listView1.Items) {
-                if (!require.ContainsKey(item.SubItems[0].Text)) {
+                if (!require.ContainsKey(item.SubItems[0].Text))
                     require.Add(item.SubItems[0].Text, item.SubItems[1].Text);
-                }
             }
         }
         
         void ThisFormLoad(object sender, EventArgs e)
         {
-            if (require == null) {
+            if (require == null)
                 return;
-            }
             
             foreach (var reqItem in require) {
                 ListViewItem item = listView1.Items.Add(reqItem.Key);
