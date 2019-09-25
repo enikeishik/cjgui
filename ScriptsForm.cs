@@ -34,42 +34,42 @@ namespace CJGui
         {
             this.scripts = scripts;
             
-            if (this.scripts.pre_install_cmd == null) {
+            if (this.scripts.pre_install_cmd == null)
                 this.scripts.pre_install_cmd = new StrArr();
-            }
-            if (this.scripts.post_install_cmd == null) {
+            
+            if (this.scripts.post_install_cmd == null)
                 this.scripts.post_install_cmd = new StrArr();
-            }
-            if (this.scripts.pre_update_cmd == null) {
+            
+            if (this.scripts.pre_update_cmd == null)
                 this.scripts.pre_update_cmd = new StrArr();
-            }
-            if (this.scripts.post_update_cmd == null) {
+            
+            if (this.scripts.post_update_cmd == null)
                 this.scripts.post_update_cmd = new StrArr();
-            }
-            if (this.scripts.post_status_cmd == null) {
+            
+            if (this.scripts.post_status_cmd == null)
                 this.scripts.post_status_cmd = new StrArr();
-            }
-            if (this.scripts.pre_archive_cmd == null) {
+            
+            if (this.scripts.pre_archive_cmd == null)
                 this.scripts.pre_archive_cmd = new StrArr();
-            }
-            if (this.scripts.post_archive_cmd == null) {
+            
+            if (this.scripts.post_archive_cmd == null)
                 this.scripts.post_archive_cmd = new StrArr();
-            }
-            if (this.scripts.pre_autoload_dump == null) {
+            
+            if (this.scripts.pre_autoload_dump == null)
                 this.scripts.pre_autoload_dump = new StrArr();
-            }
-            if (this.scripts.post_autoload_dump == null) {
+            
+            if (this.scripts.post_autoload_dump == null)
                 this.scripts.post_autoload_dump = new StrArr();
-            }
-            if (this.scripts.post_root_package_install == null) {
+            
+            if (this.scripts.post_root_package_install == null)
                 this.scripts.post_root_package_install = new StrArr();
-            }
-            if (this.scripts.post_create_project_cmd == null) {
+            
+            if (this.scripts.post_create_project_cmd == null)
                 this.scripts.post_create_project_cmd = new StrArr();
-            }
-            if (this.scripts.custom == null) {
+            
+            if (this.scripts.custom == null)
                 this.scripts.custom = new Dictionary<string, StrArr>();
-            }
+            
         }
         
         void CloseClick(object sender, EventArgs e)
@@ -83,9 +83,8 @@ namespace CJGui
             
             var dataField = (StrArr) scripts.GetType().GetField(formControl.Name).GetValue(scripts);
             
-            if (dataField == null) {
+            if (dataField == null)
                 dataField = new StrArr();
-            }
             
             var form = new ListBoxForm(dataField.Values);
             form.ShowDialog();
