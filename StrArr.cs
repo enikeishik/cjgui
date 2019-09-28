@@ -26,18 +26,16 @@ namespace CJGui
         {
             get
             {
-                if (Values.Count == 0) {
+                if (Values.Count == 0)
                     return "\"\"";
-                }
                 
-                if (Values.Count == 1) {
+                if (Values.Count == 1)
                     return "\"" + Values[0] + "\"";
-                }
                 
                 var str = "[";
-                foreach (var val in Values) {
+                foreach (var val in Values)
                     str += "\"" + val + "\",";
-                }
+                
                 return str.Substring(0, str.Length - 1) + "]";
             }
             
@@ -53,13 +51,15 @@ namespace CJGui
                             new [] {"\",\""}, 
                             StringSplitOptions.RemoveEmptyEntries
                         );
-                    foreach (var s in arr) {
+                    foreach (var s in arr)
                         Values.Add(s);
-                    }
+                    
                 } else if (value.IndexOf('"') == 0 && value.LastIndexOf('"') == (value.Length - 1)) {
                     Values.Add(value.Trim(new [] {'"'}));
+                    
                 } else {
                     Values.Add(value);
+                    
                 }
             }
         }
