@@ -24,23 +24,22 @@ namespace CJGui
         {
             get
             {
-                if (Value.ToLower() == "true") {
+                if (Value.ToLower() == "true")
                     return "true";
-                }
-                if (Value.ToLower() == "false") {
+                
+                if (Value.ToLower() == "false")
                     return "false";
-                }
+                
                 return Value;
             }
             set
             {
-                if (value.ToLower() == "true") {
+                if (value.ToLower() == "true")
                     Value = "true";
-                } else if (value.ToLower() == "false") {
+                else if (value.ToLower() == "false")
                     Value = "false";
-                } else {
+                else
                     Value = value;
-                }
             }
         }
             
