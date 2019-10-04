@@ -26,18 +26,16 @@ namespace CJGui
         {
             get
             {
-                if (Values.Count == 0) {
+                if (Values.Count == 0)
                     return "\"\"";
-                }
                 
-                if (Values.Count == 1 && Values.Keys.First() == "") {
+                if (Values.Count == 1 && Values.Keys.First() == "")
                     return "\"" + Values.Values.First() + "\"";
-                }
                 
                 var str = "{";
-                foreach (var val in Values) {
+                foreach (var val in Values)
                     str += "\"" + val.Key + "\":\"" + val.Value + "\",";
-                }
+                
                 return str.Substring(0, str.Length - 1) + "}";
             }
             
@@ -55,9 +53,8 @@ namespace CJGui
                         );
                     foreach (var s in arr) {
                         var a = s.Split(':');
-                        if (a.Length == 2) {
+                        if (a.Length == 2)
                             Values.Add(a[0], a[1]);
-                        }
                     }
                 } else if (value.IndexOf('"') == 0 && value.LastIndexOf('"') == (value.Length - 1)) {
                     Values.Add("", value.Trim(new [] {'"'}));
