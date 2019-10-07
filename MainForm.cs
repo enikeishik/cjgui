@@ -324,9 +324,9 @@ namespace CJGui
             if (dataField.Count == 0) {
                 dataField = null;
             } else {
-                foreach (var item in dataField) {
+                foreach (var item in dataField)
                     formControl.Text += item.Key + ", ";
-                }
+                
                 formControl.Text = formControl.Text.Substring(0, formControl.Text.Length - 2);
             }
             data.GetType().GetField(formControl.Name).SetValue(data, dataField);
